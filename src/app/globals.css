@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Serif typography classes */
+.font-serif-sc {
+  font-family: var(--font-serif), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+::selection {
+  background-color: var(--theme-pardon);
+  color: var(--selection-text);
+}
+
+/* Base Card Styles */
+.bento-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Individual Card Hover Effects using OkLab color mixing (No Shadows) */
+.bento-card.theme-pardon:hover {
+  border-color: var(--theme-pardon);
+  transform: translateY(-4px);
+}
+.bento-card.theme-pardon:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at 80% 20%, color-mix(in oklab, var(--theme-pardon) 8%, transparent) 0%, transparent 60%);
+}
+
+.bento-card.theme-journey:hover {
+  border-color: var(--theme-journey);
+  transform: translateY(-4px);
+}
+.bento-card.theme-journey:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at 20% 80%, color-mix(in oklab, var(--theme-journey) 12%, transparent) 0%, transparent 60%);
+}
+
+.bento-card.theme-creations:hover {
+  border-color: var(--theme-creations);
+  transform: translateY(-4px);
+}
+.bento-card.theme-creations:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--theme-creations) 8%, transparent) 0%, transparent 70%);
+}
+
+.bento-card.theme-thoughts:hover {
+  border-color: var(--theme-thoughts);
+  transform: translateY(-4px);
+}
+.bento-card.theme-thoughts:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at 80% 80%, color-mix(in oklab, var(--theme-thoughts) 15%, transparent) 0%, transparent 60%);
+}
+
+.section-page ::selection {
+  background-color: var(--section-color, var(--theme-pardon));
+  color: var(--selection-text);
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  border-color: var(--section-color, var(--card-border));
+  transform: translateY(-2px);
+}
+
+@keyframes shimmer {
+  0% { background-position: 250% 0; }
+  100% { background-position: -250% 0; }
+}
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
 }
