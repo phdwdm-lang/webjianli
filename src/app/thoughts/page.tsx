@@ -1,5 +1,6 @@
 import { Tag } from "lucide-react";
 import PageContainer from "@/components/PageContainer";
+import PaperPlaneTrail from "@/components/effects/PaperPlaneTrail";
 import { THOUGHTS } from "@/constants/profile";
 import { CSS_VARS } from "@/constants/theme";
 
@@ -14,7 +15,7 @@ export default function ThoughtsPage() {
         {THOUGHTS.map((thought, index) => (
           <article
             key={index}
-            className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all hover:border-[var(--section-color)] hover:-translate-y-1 cursor-pointer"
+            className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all hover:border-[var(--section-color)] hover:-translate-y-1 cursor-pointer"
           >
             <div className="flex items-center justify-between mb-3">
               <span

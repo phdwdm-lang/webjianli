@@ -5,13 +5,17 @@ import { OceanJourney } from "@/components/OceanJourney";
 import { HOME_CARD_STYLES } from "@/constants/theme";
 import { useHoverState } from "@/hooks/useHoverState";
 
-export function JourneyCard() {
+interface JourneyCardProps {
+  rounded?: string;
+}
+
+export function JourneyCard({ rounded = "rounded-3xl" }: JourneyCardProps) {
   const { isHovered, handleMouseEnter, handleMouseLeave } = useHoverState();
 
   return (
     <Link
       href="/experience"
-      className="group relative rounded-3xl overflow-hidden min-h-[200px] block h-full"
+      className={`group relative ${rounded} overflow-hidden min-h-[200px] block h-full`}
       style={{ background: HOME_CARD_STYLES.journeyGradient }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

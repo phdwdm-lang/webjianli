@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Serif_SC } from "next/font/google";
+import { DM_Sans, DM_Mono, Syne, Noto_Serif_SC } from "next/font/google";
 import { THEME_STYLE_TEXT } from "@/constants/theme";
 import { ClientProviders } from "@/components/common/ClientProviders";
 import { MobileNav } from "@/components/MobileNav";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  axes: ["opsz"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmMono = DM_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
+});
+
+const syne = Syne({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const notoSerif = Noto_Serif_SC({
@@ -43,7 +51,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSerif.variable} antialiased`}
+        className={`${dmSans.variable} ${dmMono.variable} ${syne.variable} ${notoSerif.variable} antialiased`}
       >
         <ClientProviders>
           {children}

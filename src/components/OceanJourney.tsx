@@ -26,6 +26,8 @@ interface OceanJourneyProps {
 }
 
 export function OceanJourney({ isHovered = false }: OceanJourneyProps) {
+  const curvePath = buildCurvePath();
+
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {/* Elegant smooth background waves */}
@@ -77,7 +79,7 @@ export function OceanJourney({ isHovered = false }: OceanJourneyProps) {
       {/* Connection Line */}
       <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
         <motion.path
-          d={buildCurvePath()}
+          d={curvePath}
           fill="none"
           stroke={EFFECT_COLORS.oceanJourney.connectionStroke}
           strokeWidth="0.4"
@@ -92,17 +94,39 @@ export function OceanJourney({ isHovered = false }: OceanJourneyProps) {
           r="0.8"
           fill={EFFECT_COLORS.oceanJourney.glowDot}
           filter={EFFECT_COLORS.oceanJourney.glowShadow}
-          animate={{
-            offsetDistance: ["0%", "100%"],
-          }}
+          animate={
+            isHovered
+              ? {
+                  offsetDistance: ["0%", "100%"],
+                  opacity: 1,
+                }
+              : {
+                  opacity: 0,
+                }
+          }
           style={{
-            offsetPath: `path("${buildCurvePath()}")`,
+            offsetPath: `path("${curvePath}")`,
           }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          transition={
+            isHovered
+              ? {
+                  offsetDistance: {
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                  opacity: {
+                    duration: 0.25,
+                    ease: "easeOut",
+                  },
+                }
+              : {
+                  opacity: {
+                    duration: 0.35,
+                    ease: "easeOut",
+                  },
+                }
+          }
         />
       </svg>
 
