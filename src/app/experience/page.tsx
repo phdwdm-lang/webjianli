@@ -55,7 +55,7 @@ export default function ExperiencePage() {
               </div>
 
               {/* Content Card */}
-              <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all hover:border-[var(--section-color)] hover:-translate-y-1">
+              <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 transition-all hover:border-[var(--section-color)]">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
                   <div>
                     <h3 className="text-base font-semibold">{item.title}</h3>

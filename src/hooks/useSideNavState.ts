@@ -8,7 +8,7 @@ const DEFAULT_HOVERED_INDEX: number | null = null;
 
 export function useSideNavState() {
   const mouseY = useMotionValue(DEFAULT_MOUSE_Y);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(
     DEFAULT_HOVERED_INDEX
   );
@@ -33,6 +33,11 @@ export function useSideNavState() {
     setHoveredIndex(DEFAULT_HOVERED_INDEX);
   }, []);
 
+  const clearInteractionState = useCallback(() => {
+    mouseY.set(DEFAULT_MOUSE_Y);
+    setHoveredIndex(DEFAULT_HOVERED_INDEX);
+  }, [mouseY]);
+
   const toggleTheme = useCallback(() => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   }, [resolvedTheme, setTheme]);
@@ -45,6 +50,7 @@ export function useSideNavState() {
     handleMouseLeave,
     handleHoverStart,
     handleHoverEnd,
+    clearInteractionState,
     toggleTheme,
   };
 }

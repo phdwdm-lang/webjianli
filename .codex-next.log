@@ -1,0 +1,515 @@
+
+> webjianli@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://26.26.26.1:3000
+
+✓ Starting...
+✓ Ready in 703ms
+ GET /projects 200 in 1673ms (compile: 1481ms, render: 192ms)
+ GET / 200 in 155ms (compile: 23ms, render: 131ms)
+✓ Compiled in 387ms
+ GET /projects 200 in 148ms (compile: 53ms, render: 95ms)
+ GET / 200 in 66ms (compile: 50ms, render: 17ms)
+ GET /projects 200 in 28ms (compile: 3ms, render: 26ms)
+ GET /about 200 in 195ms (compile: 184ms, render: 11ms)
+ GET /thoughts 200 in 66ms (compile: 43ms, render: 23ms)
+ GET /experience 200 in 63ms (compile: 41ms, render: 22ms)
+ GET /projects 200 in 50ms (compile: 3ms, render: 47ms)
+ GET /experience 200 in 45ms (compile: 3ms, render: 42ms)
+ GET /about 200 in 17ms (compile: 3ms, render: 14ms)
+ GET / 200 in 12ms (compile: 3ms, render: 9ms)
+ GET /about 200 in 28ms (compile: 17ms, render: 11ms)
+ GET /projects 200 in 62ms (compile: 3ms, render: 59ms)
+ GET /experience 200 in 33ms (compile: 3ms, render: 30ms)
+ GET /thoughts 200 in 74ms (compile: 4ms, render: 70ms)
+ GET / 200 in 18ms (compile: 2ms, render: 15ms)
+ GET /about 200 in 40ms (compile: 4ms, render: 35ms)
+ GET / 200 in 39ms (compile: 7ms, render: 32ms)
+ GET /about 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 16ms (compile: 4ms, render: 13ms)
+ GET /about 200 in 15ms (compile: 2ms, render: 13ms)
+ GET /thoughts 200 in 33ms (compile: 4ms, render: 29ms)
+ GET / 200 in 12ms (compile: 1911µs, render: 10ms)
+ GET /thoughts 200 in 29ms (compile: 2ms, render: 27ms)
+ GET / 200 in 23ms (compile: 3ms, render: 20ms)
+ GET /thoughts 200 in 34ms (compile: 2ms, render: 31ms)
+ GET / 200 in 18ms (compile: 4ms, render: 14ms)
+ GET /thoughts 200 in 25ms (compile: 3ms, render: 22ms)
+ GET / 200 in 15ms (compile: 3ms, render: 12ms)
+ GET /thoughts 200 in 28ms (compile: 2ms, render: 26ms)
+ GET /experience 200 in 21ms (compile: 2ms, render: 19ms)
+ GET /projects 200 in 27ms (compile: 2ms, render: 25ms)
+ GET /about 200 in 17ms (compile: 2ms, render: 14ms)
+ GET / 200 in 21ms (compile: 4ms, render: 17ms)
+ GET /experience 200 in 41ms (compile: 3ms, render: 38ms)
+ GET /thoughts 200 in 25ms (compile: 2ms, render: 23ms)
+ GET / 200 in 11ms (compile: 1919µs, render: 9ms)
+ GET /about 200 in 23ms (compile: 4ms, render: 19ms)
+ GET /projects 200 in 38ms (compile: 2ms, render: 36ms)
+ GET /experience 200 in 22ms (compile: 1928µs, render: 20ms)
+ GET / 200 in 203ms (compile: 6ms, render: 197ms)
+✓ Compiled in 1621ms
+ GET / 200 in 342ms (compile: 179ms, render: 163ms)
+ GET /experience 200 in 371ms (compile: 243ms, render: 128ms)
+✓ Compiled in 308ms
+✓ Compiled in 316ms
+✓ Compiled in 416ms
+ GET / 200 in 598ms (compile: 146ms, render: 452ms)
+ GET / 200 in 223ms (compile: 16ms, render: 207ms)
+ GET / 200 in 191ms (compile: 6ms, render: 185ms)
+ GET /projects 200 in 282ms (compile: 130ms, render: 151ms)
+ GET / 200 in 168ms (compile: 7ms, render: 160ms)
+ GET /projects 200 in 57ms (compile: 3ms, render: 53ms)
+ GET / 200 in 466ms (compile: 23ms, render: 443ms)
+ GET /projects 200 in 63ms (compile: 9ms, render: 54ms)
+✓ Compiled in 70ms
+✓ Compiled in 324ms
+✓ Compiled in 278ms
+ GET /experience 200 in 215ms (compile: 80ms, render: 135ms)
+ GET /about 200 in 61ms (compile: 45ms, render: 16ms)
+ GET / 200 in 18ms (compile: 3ms, render: 14ms)
+ GET /projects 200 in 25ms (compile: 3ms, render: 21ms)
+ GET /experience 200 in 29ms (compile: 2ms, render: 27ms)
+ GET /thoughts 200 in 105ms (compile: 66ms, render: 40ms)
+✓ Compiled in 97ms
+ GET /projects 200 in 46ms (compile: 4ms, render: 42ms)
+ GET /about 200 in 15ms (compile: 3ms, render: 12ms)
+ GET / 200 in 17ms (compile: 3ms, render: 13ms)
+ GET /thoughts 200 in 41ms (compile: 19ms, render: 22ms)
+✓ Compiled in 456ms
+ GET /thoughts 200 in 182ms (compile: 89ms, render: 93ms)
+ GET /thoughts 200 in 133ms (compile: 2ms, render: 131ms)
+ GET /about 200 in 65ms (compile: 49ms, render: 16ms)
+ GET / 200 in 88ms (compile: 56ms, render: 32ms)
+ GET /experience 200 in 96ms (compile: 69ms, render: 28ms)
+ GET /thoughts 200 in 19ms (compile: 2ms, render: 17ms)
+ GET /about 200 in 13ms (compile: 1680µs, render: 11ms)
+ GET / 200 in 15ms (compile: 2ms, render: 12ms)
+ GET /thoughts 200 in 22ms (compile: 3ms, render: 19ms)
+ GET /experience 200 in 28ms (compile: 3ms, render: 25ms)
+ GET /projects 200 in 123ms (compile: 83ms, render: 40ms)
+ GET /about 200 in 16ms (compile: 3ms, render: 13ms)
+ GET / 200 in 16ms (compile: 2ms, render: 14ms)
+ GET /about 200 in 21ms (compile: 2ms, render: 18ms)
+ GET /projects 200 in 32ms (compile: 4ms, render: 28ms)
+ GET /experience 200 in 24ms (compile: 3ms, render: 21ms)
+ GET /thoughts 200 in 26ms (compile: 1982µs, render: 24ms)
+ GET /about 200 in 13ms (compile: 2ms, render: 11ms)
+ GET /thoughts 200 in 23ms (compile: 2ms, render: 21ms)
+ GET /experience 200 in 22ms (compile: 2ms, render: 19ms)
+ GET /about 200 in 16ms (compile: 3ms, render: 13ms)
+ GET /projects 200 in 28ms (compile: 1975µs, render: 26ms)
+ GET /experience 200 in 30ms (compile: 2ms, render: 27ms)
+ GET /thoughts 200 in 25ms (compile: 3ms, render: 23ms)
+ GET /about 200 in 16ms (compile: 3ms, render: 13ms)
+ GET / 200 in 12ms (compile: 3ms, render: 9ms)
+ GET /about 200 in 17ms (compile: 3ms, render: 14ms)
+ GET / 200 in 11ms (compile: 2ms, render: 9ms)
+ GET /about 200 in 34ms (compile: 7ms, render: 26ms)
+ GET / 200 in 15ms (compile: 2ms, render: 12ms)
+ GET /projects 200 in 26ms (compile: 3ms, render: 23ms)
+ GET /thoughts 200 in 29ms (compile: 3ms, render: 26ms)
+ GET /experience 200 in 28ms (compile: 3ms, render: 25ms)
+ GET /thoughts 200 in 23ms (compile: 2ms, render: 21ms)
+ GET /experience 200 in 26ms (compile: 2ms, render: 23ms)
+ GET /projects 200 in 28ms (compile: 1916µs, render: 26ms)
+ GET /about 200 in 19ms (compile: 3ms, render: 16ms)
+ GET / 200 in 16ms (compile: 3ms, render: 14ms)
+✓ Compiled in 253ms
+✓ Compiled in 292ms
+✓ Compiled in 200ms
+✓ Compiled in 214ms
+ GET /projects 200 in 60ms (compile: 6ms, render: 53ms)
+ GET /thoughts 200 in 108ms (compile: 73ms, render: 34ms)
+ GET / 200 in 23ms (compile: 5ms, render: 19ms)
+ GET /about 200 in 101ms (compile: 4ms, render: 97ms)
+ GET /thoughts 200 in 34ms (compile: 4ms, render: 30ms)
+ GET /experience 200 in 61ms (compile: 25ms, render: 36ms)
+ GET /projects 200 in 43ms (compile: 3ms, render: 40ms)
+ GET /about 200 in 107ms (compile: 20ms, render: 86ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET /thoughts 200 in 35ms (compile: 3ms, render: 32ms)
+ GET /experience 200 in 40ms (compile: 5ms, render: 35ms)
+ GET /projects 200 in 107ms (compile: 3ms, render: 104ms)
+ GET /about 200 in 21ms (compile: 3ms, render: 17ms)
+ GET / 200 in 21ms (compile: 3ms, render: 18ms)
+✓ Compiled in 98ms
+✓ Compiled in 90ms
+✓ Compiled in 72ms
+✓ Compiled in 84ms
+✓ Compiled in 71ms
+✓ Compiled in 72ms
+✓ Compiled in 67ms
+✓ Compiled in 190ms
+✓ Compiled in 239ms
+ GET /thoughts 200 in 154ms (compile: 56ms, render: 98ms)
+ GET / 200 in 29ms (compile: 8ms, render: 21ms)
+ GET /about 200 in 163ms (compile: 122ms, render: 41ms)
+ GET /experience 200 in 86ms (compile: 30ms, render: 56ms)
+ GET / 200 in 21ms (compile: 4ms, render: 17ms)
+ GET /projects 200 in 59ms (compile: 8ms, render: 51ms)
+ GET /about 200 in 131ms (compile: 4ms, render: 127ms)
+ GET /experience 200 in 64ms (compile: 4ms, render: 60ms)
+ GET / 200 in 26ms (compile: 4ms, render: 22ms)
+ GET /about 200 in 28ms (compile: 5ms, render: 23ms)
+ GET /projects 200 in 131ms (compile: 3ms, render: 128ms)
+ GET /experience 200 in 45ms (compile: 4ms, render: 42ms)
+ GET /projects 200 in 59ms (compile: 4ms, render: 55ms)
+ GET /about 200 in 26ms (compile: 4ms, render: 22ms)
+ GET /experience 200 in 111ms (compile: 3ms, render: 108ms)
+ GET /thoughts 200 in 35ms (compile: 3ms, render: 32ms)
+ GET /experience 200 in 53ms (compile: 3ms, render: 49ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+✓ Compiled in 204ms
+✓ Compiled in 192ms
+✓ Compiled in 231ms
+✓ Compiled in 234ms
+✓ Compiled in 174ms
+✓ Compiled in 187ms
+✓ Compiled in 165ms
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+✓ Compiled in 347ms
+ GET / 200 in 430ms (compile: 35ms, render: 395ms)
+ GET / 200 in 727ms (compile: 174ms, render: 553ms)
+ GET / 200 in 535ms (compile: 5ms, render: 530ms)
+ GET / 200 in 218ms (compile: 81ms, render: 137ms)
+ GET / 200 in 120ms (compile: 6ms, render: 113ms)
+ GET / 200 in 134ms (compile: 4ms, render: 130ms)
+ GET / 200 in 143ms (compile: 4ms, render: 139ms)
+ GET / 200 in 148ms (compile: 8ms, render: 140ms)
+ GET / 200 in 141ms (compile: 9ms, render: 131ms)
+ GET / 200 in 161ms (compile: 9ms, render: 152ms)
+ GET / 200 in 152ms (compile: 4ms, render: 149ms)
+ GET / 200 in 148ms (compile: 5ms, render: 143ms)
+ GET / 200 in 124ms (compile: 5ms, render: 119ms)
+ GET / 200 in 151ms (compile: 4ms, render: 147ms)
+ GET / 200 in 230ms (compile: 4ms, render: 225ms)
+ GET / 200 in 224ms (compile: 5ms, render: 219ms)
+ GET / 200 in 197ms (compile: 5ms, render: 192ms)
+ GET / 200 in 150ms (compile: 18ms, render: 132ms)
+ GET / 200 in 32ms (compile: 6ms, render: 26ms)
+ GET / 200 in 232ms (compile: 3ms, render: 229ms)
+ GET /thoughts 200 in 6.1s (compile: 6.1s, render: 68ms)
+ GET /thoughts 200 in 40ms (compile: 3ms, render: 36ms)
+ GET /experience 200 in 102ms (compile: 46ms, render: 56ms)
+ GET /thoughts 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /experience 200 in 45ms (compile: 5ms, render: 39ms)
+ GET /thoughts 200 in 23ms (compile: 4ms, render: 20ms)
+ GET /experience 200 in 55ms (compile: 5ms, render: 50ms)
+ GET /thoughts 200 in 48ms (compile: 6ms, render: 42ms)
+ GET /experience 200 in 45ms (compile: 4ms, render: 41ms)
+ GET /thoughts 200 in 25ms (compile: 4ms, render: 20ms)
+ GET /experience 200 in 35ms (compile: 4ms, render: 30ms)
+ GET /projects 200 in 236ms (compile: 106ms, render: 129ms)
+ GET / 200 in 46ms (compile: 7ms, render: 39ms)
+ GET /thoughts 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /thoughts 200 in 123ms (compile: 3ms, render: 120ms)
+ GET /thoughts 200 in 53ms (compile: 3ms, render: 49ms)
+ GET / 200 in 13ms (compile: 3ms, render: 10ms)
+ GET /thoughts 200 in 19ms (compile: 4ms, render: 15ms)
+ GET / 200 in 11ms (compile: 2ms, render: 9ms)
+ GET /thoughts 200 in 18ms (compile: 3ms, render: 14ms)
+ GET /thoughts 200 in 48ms (compile: 2ms, render: 45ms)
+ GET /thoughts 200 in 48ms (compile: 4ms, render: 44ms)
+ GET /thoughts 200 in 87ms (compile: 5ms, render: 82ms)
+ GET /experience 200 in 39ms (compile: 3ms, render: 35ms)
+ GET /thoughts 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /about 200 in 38ms (compile: 18ms, render: 20ms)
+ GET / 200 in 20ms (compile: 4ms, render: 16ms)
+ GET /projects 200 in 60ms (compile: 10ms, render: 50ms)
+ GET /thoughts 200 in 57ms (compile: 5ms, render: 52ms)
+ GET /experience 200 in 41ms (compile: 4ms, render: 37ms)
+ GET /thoughts 200 in 24ms (compile: 4ms, render: 20ms)
+ GET /experience 200 in 63ms (compile: 4ms, render: 58ms)
+ GET /projects 200 in 66ms (compile: 3ms, render: 63ms)
+ GET /about 200 in 24ms (compile: 4ms, render: 20ms)
+ GET / 200 in 24ms (compile: 4ms, render: 20ms)
+ GET /about 200 in 46ms (compile: 11ms, render: 35ms)
+ GET /projects 200 in 52ms (compile: 3ms, render: 49ms)
+ GET /experience 200 in 43ms (compile: 6ms, render: 37ms)
+ GET /thoughts 200 in 27ms (compile: 7ms, render: 20ms)
+ GET /thoughts 200 in 87ms (compile: 5ms, render: 83ms)
+ GET /thoughts 200 in 83ms (compile: 4ms, render: 80ms)
+ GET /projects 200 in 50ms (compile: 3ms, render: 47ms)
+ GET /experience 200 in 60ms (compile: 3ms, render: 57ms)
+ GET /projects 200 in 60ms (compile: 3ms, render: 57ms)
+ GET /about 200 in 26ms (compile: 3ms, render: 22ms)
+ GET / 200 in 19ms (compile: 3ms, render: 16ms)
+ GET /thoughts 200 in 23ms (compile: 4ms, render: 20ms)
+ GET / 200 in 41ms (compile: 3ms, render: 37ms)
+ GET /about 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /experience 200 in 65ms (compile: 3ms, render: 62ms)
+ GET /projects 200 in 48ms (compile: 5ms, render: 43ms)
+ GET /thoughts 200 in 24ms (compile: 4ms, render: 20ms)
+ GET /experience 200 in 82ms (compile: 4ms, render: 78ms)
+ GET /projects 200 in 51ms (compile: 3ms, render: 48ms)
+ GET /about 200 in 21ms (compile: 3ms, render: 17ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET /about 200 in 25ms (compile: 4ms, render: 21ms)
+ GET /projects 200 in 53ms (compile: 3ms, render: 50ms)
+ GET /experience 200 in 45ms (compile: 4ms, render: 41ms)
+ GET /thoughts 200 in 23ms (compile: 3ms, render: 20ms)
+✓ Compiled in 112ms
+⨯ ./src/app/thoughts/components/StickyNote.tsx:141:19
+Parsing ecmascript source code failed
+[0m [90m 139 |[39m                 [33m<[39m[33m/[39m[33mspan[39m[33m>[39m
+ [90m 140 |[39m               ) [33m:[39m [36mnull[39m}
+[31m[1m>[22m[39m[90m 141 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m                   [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 142 |[39m             [33m<[39m[33mp[39m
+ [90m     |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 143 |[39m               className[33m=[39m{cn([32m"text-[18px] leading-[2]"[39m[33m,[39m titleClass)}
+ [90m 144 |[39m               style[33m=[39m{{ color[33m:[39m palette[33m.[39mink }}
+ [90m 145 |[39m             [33m>[39m[0m
+
+Expected '</', got 'jsx text'
+
+Import traces:
+  Client Component Browser:
+    ./src/app/thoughts/components/StickyNote.tsx [Client Component Browser]
+    ./src/app/thoughts/components/ThoughtsCanvas.tsx [Client Component Browser]
+    ./src/app/thoughts/components/ThoughtsCanvas.tsx [Server Component]
+    ./src/app/thoughts/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/thoughts/components/StickyNote.tsx [Client Component SSR]
+    ./src/app/thoughts/components/ThoughtsCanvas.tsx [Client Component SSR]
+    ./src/app/thoughts/components/ThoughtsCanvas.tsx [Server Component]
+    ./src/app/thoughts/page.tsx [Server Component]
+
+
+ GET /thoughts 500 in 499ms (compile: 313ms, render: 186ms)
+✓ Compiled in 226ms
+ GET /thoughts 200 in 247ms (compile: 90ms, render: 156ms)
+✓ Compiled in 116ms
+✓ Compiled in 298ms
+✓ Compiled in 248ms
+✓ Compiled in 574ms
+ GET /thoughts 200 in 331ms (compile: 87ms, render: 244ms)
+✓ Compiled in 142ms
+✓ Compiled in 366ms
+✓ Compiled in 280ms
+✓ Compiled in 130ms
+ GET /thoughts 200 in 297ms (compile: 84ms, render: 213ms)
+ GET /experience 200 in 68ms (compile: 25ms, render: 43ms)
+ GET /thoughts 200 in 31ms (compile: 12ms, render: 19ms)
+✓ Compiled in 176ms
+✓ Compiled in 162ms
+ GET /thoughts 200 in 348ms (compile: 89ms, render: 259ms)
+ GET /experience 200 in 65ms (compile: 22ms, render: 43ms)
+ GET /thoughts 200 in 23ms (compile: 4ms, render: 19ms)
+ GET /experience 200 in 54ms (compile: 4ms, render: 49ms)
+ GET /thoughts 200 in 32ms (compile: 4ms, render: 28ms)
+ GET /experience 200 in 52ms (compile: 3ms, render: 49ms)
+ GET /thoughts 200 in 25ms (compile: 4ms, render: 21ms)
+ GET /experience 200 in 42ms (compile: 4ms, render: 39ms)
+ GET /projects 200 in 83ms (compile: 28ms, render: 55ms)
+ GET /about 200 in 70ms (compile: 34ms, render: 36ms)
+ GET /thoughts 200 in 44ms (compile: 3ms, render: 40ms)
+ GET /experience 200 in 38ms (compile: 4ms, render: 34ms)
+ GET /thoughts 200 in 25ms (compile: 4ms, render: 21ms)
+✓ Compiled in 123ms
+ GET /experience 200 in 66ms (compile: 3ms, render: 62ms)
+ GET /thoughts 200 in 231ms (compile: 155ms, render: 76ms)
+ GET /experience 200 in 46ms (compile: 3ms, render: 42ms)
+ GET /thoughts 200 in 59ms (compile: 8ms, render: 51ms)
+ GET /thoughts 200 in 360ms (compile: 4ms, render: 357ms)
+✓ Compiled in 103ms
+✓ Compiled in 112ms
+✓ Compiled in 319ms
+✓ Compiled in 51ms
+✓ Compiled in 42ms
+ GET /thoughts 200 in 603ms (compile: 155ms, render: 448ms)
+✓ Compiled in 102ms
+✓ Compiled in 283ms
+✓ Compiled in 49ms
+ GET /thoughts 200 in 644ms (compile: 174ms, render: 470ms)
+✓ Compiled in 435ms
+✓ Compiled in 234ms
+✓ Compiled in 81ms
+ GET /thoughts 200 in 593ms (compile: 222ms, render: 371ms)
+ GET / 200 in 65ms (compile: 31ms, render: 34ms)
+ GET /thoughts 200 in 36ms (compile: 16ms, render: 19ms)
+ GET /experience 200 in 83ms (compile: 31ms, render: 52ms)
+ GET /projects 200 in 316ms (compile: 38ms, render: 278ms)
+ GET /about 200 in 46ms (compile: 26ms, render: 20ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+⨯ ./src/app/thoughts/page.tsx:9:1
+Module not found: Can't resolve '@/app/thoughts/components/ThoughtsCanvas'
+[0m [90m  7 |[39m   [33mZhi_Mang_Xing[39m[33m,[39m
+ [90m  8 |[39m } [36mfrom[39m [32m"next/font/google"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mThoughtsCanvas[39m } [36mfrom[39m [32m"@/app/thoughts/components/ThoughtsCanvas"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mCSS_VARS[39m } [36mfrom[39m [32m"@/constants/theme"[39m[33m;[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m caveat [33m=[39m [33mCaveat[39m({[0m
+
+Import map: aliased to relative './src/app/thoughts/components/ThoughtsCanvas' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/thoughts/page.tsx:9:1
+Module not found: Can't resolve '@/app/thoughts/components/ThoughtsCanvas'
+[0m [90m  7 |[39m   [33mZhi_Mang_Xing[39m[33m,[39m
+ [90m  8 |[39m } [36mfrom[39m [32m"next/font/google"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mThoughtsCanvas[39m } [36mfrom[39m [32m"@/app/thoughts/components/ThoughtsCanvas"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mCSS_VARS[39m } [36mfrom[39m [32m"@/constants/theme"[39m[33m;[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m caveat [33m=[39m [33mCaveat[39m({[0m
+
+Import map: aliased to relative './src/app/thoughts/components/ThoughtsCanvas' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/thoughts/page.tsx:9:1
+Module not found: Can't resolve '@/app/thoughts/components/ThoughtsCanvas'
+[0m [90m  7 |[39m   [33mZhi_Mang_Xing[39m[33m,[39m
+ [90m  8 |[39m } [36mfrom[39m [32m"next/font/google"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mThoughtsCanvas[39m } [36mfrom[39m [32m"@/app/thoughts/components/ThoughtsCanvas"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mCSS_VARS[39m } [36mfrom[39m [32m"@/constants/theme"[39m[33m;[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m caveat [33m=[39m [33mCaveat[39m({[0m
+
+Import map: aliased to relative './src/app/thoughts/components/ThoughtsCanvas' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/thoughts/page.tsx:9:1
+Module not found: Can't resolve '@/app/thoughts/components/ThoughtsCanvas'
+[0m [90m  7 |[39m   [33mZhi_Mang_Xing[39m[33m,[39m
+ [90m  8 |[39m } [36mfrom[39m [32m"next/font/google"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mThoughtsCanvas[39m } [36mfrom[39m [32m"@/app/thoughts/components/ThoughtsCanvas"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mCSS_VARS[39m } [36mfrom[39m [32m"@/constants/theme"[39m[33m;[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m caveat [33m=[39m [33mCaveat[39m({[0m
+
+Import map: aliased to relative './src/app/thoughts/components/ThoughtsCanvas' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET / 200 in 18ms (compile: 3ms, render: 15ms)
+✓ Compiled in 156ms
+ GET /about 200 in 22ms (compile: 4ms, render: 18ms)
+ GET / 200 in 38ms (compile: 3ms, render: 35ms)
+ GET /about 200 in 22ms (compile: 3ms, render: 19ms)
+ GET / 200 in 20ms (compile: 3ms, render: 16ms)
+ GET /thoughts 200 in 407ms (compile: 359ms, render: 47ms)
+ GET / 200 in 16ms (compile: 4ms, render: 12ms)
+ GET / 200 in 71ms (compile: 3ms, render: 69ms)
+ GET /about 200 in 19ms (compile: 3ms, render: 16ms)
+ GET /projects 200 in 40ms (compile: 2ms, render: 37ms)
+ GET /about 200 in 18ms (compile: 4ms, render: 14ms)
+ GET / 200 in 17ms (compile: 4ms, render: 13ms)
+ GET /about 200 in 27ms (compile: 4ms, render: 22ms)
+ GET /projects 200 in 101ms (compile: 3ms, render: 98ms)
+ GET /about 200 in 26ms (compile: 3ms, render: 23ms)
+ GET /projects 200 in 43ms (compile: 4ms, render: 40ms)
+ GET /experience 200 in 76ms (compile: 3ms, render: 72ms)
+ GET /thoughts 200 in 23ms (compile: 4ms, render: 20ms)
+ GET / 200 in 20ms (compile: 3ms, render: 16ms)
+ GET /about 200 in 57ms (compile: 3ms, render: 54ms)
+ GET / 200 in 19ms (compile: 3ms, render: 16ms)
+ GET /about 200 in 69ms (compile: 3ms, render: 66ms)
+ GET / 200 in 36ms (compile: 4ms, render: 33ms)
+ GET /about 200 in 23ms (compile: 4ms, render: 19ms)
+ GET /experience 200 in 98ms (compile: 4ms, render: 94ms)
+ GET /projects 200 in 48ms (compile: 3ms, render: 45ms)
+✓ Compiled in 92ms
+✓ Compiled in 336ms
+✓ Compiled in 255ms
+✓ Compiled in 155ms
+ GET /experience 200 in 228ms (compile: 26ms, render: 202ms)
+ GET /about 200 in 688ms (compile: 471ms, render: 217ms)
+ GET / 200 in 417ms (compile: 297ms, render: 120ms)
+ GET /about 200 in 20ms (compile: 3ms, render: 17ms)
+ GET /projects 200 in 46ms (compile: 4ms, render: 42ms)
+ GET /experience 200 in 113ms (compile: 3ms, render: 110ms)
+ GET /thoughts 200 in 150ms (compile: 7ms, render: 143ms)
+ GET / 200 in 25ms (compile: 3ms, render: 21ms)
+ GET /experience 200 in 283ms (compile: 16ms, render: 267ms)
+ GET /about 200 in 25ms (compile: 3ms, render: 22ms)
+ GET / 200 in 27ms (compile: 3ms, render: 24ms)
+ GET /about 200 in 23ms (compile: 3ms, render: 20ms)
+ GET / 200 in 22ms (compile: 4ms, render: 18ms)
+ GET /about 200 in 28ms (compile: 6ms, render: 23ms)
+ GET /experience 200 in 99ms (compile: 3ms, render: 97ms)
+ GET /projects 200 in 45ms (compile: 4ms, render: 42ms)
+ GET /experience 200 in 158ms (compile: 4ms, render: 154ms)
+ GET / 200 in 36ms (compile: 3ms, render: 33ms)
+ GET /experience 200 in 220ms (compile: 11ms, render: 209ms)
+ GET /projects 200 in 42ms (compile: 4ms, render: 38ms)
+ GET /experience 200 in 46ms (compile: 3ms, render: 42ms)
+ GET /about 200 in 22ms (compile: 4ms, render: 18ms)
+ GET /about 200 in 28ms (compile: 3ms, render: 24ms)
+✓ Compiled in 177ms
+ GET / 200 in 21ms (compile: 4ms, render: 17ms)
+ GET / 200 in 52ms (compile: 3ms, render: 49ms)
+ GET / 200 in 30ms (compile: 4ms, render: 26ms)
+✓ Compiled in 89ms
+ GET /about 200 in 563ms (compile: 410ms, render: 152ms)
+ GET /projects 200 in 536ms (compile: 357ms, render: 179ms)
+ GET /experience 200 in 321ms (compile: 192ms, render: 130ms)
+ GET /about 200 in 41ms (compile: 4ms, render: 38ms)
+ GET / 200 in 46ms (compile: 3ms, render: 43ms)
+ GET /projects 200 in 162ms (compile: 3ms, render: 158ms)
+ GET /experience 200 in 83ms (compile: 8ms, render: 75ms)
+ GET /about 200 in 22ms (compile: 3ms, render: 19ms)
+ GET /projects 200 in 145ms (compile: 4ms, render: 141ms)
+ GET /experience 200 in 200ms (compile: 3ms, render: 197ms)
+ GET /thoughts 200 in 25ms (compile: 4ms, render: 21ms)
+ GET / 200 in 23ms (compile: 3ms, render: 20ms)
+ GET /thoughts 200 in 25ms (compile: 3ms, render: 22ms)
+ GET /experience 200 in 222ms (compile: 18ms, render: 204ms)
+ GET /thoughts 200 in 24ms (compile: 3ms, render: 20ms)
+ GET /experience 200 in 84ms (compile: 3ms, render: 81ms)
+ GET /thoughts 200 in 22ms (compile: 4ms, render: 19ms)
+ GET /experience 200 in 56ms (compile: 3ms, render: 53ms)
+ GET /projects 200 in 52ms (compile: 4ms, render: 48ms)
+ GET /about 200 in 152ms (compile: 21ms, render: 131ms)
+ GET / 200 in 28ms (compile: 3ms, render: 24ms)
+ GET /thoughts 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /experience 200 in 67ms (compile: 4ms, render: 63ms)
+ GET /experience 200 in 50ms (compile: 3ms, render: 46ms)
+✓ Compiled in 283ms
+✓ Compiled in 181ms
+ GET /experience 200 in 51ms (compile: 3ms, render: 48ms)
+✓ Compiled in 144ms
+ GET /experience 200 in 234ms (compile: 137ms, render: 97ms)
+ GET /projects 200 in 662ms (compile: 317ms, render: 345ms)
+ GET /projects 200 in 606ms (compile: 3ms, render: 603ms)
+ GET / 200 in 25ms (compile: 4ms, render: 21ms)
+ GET /about 200 in 330ms (compile: 183ms, render: 147ms)
+ GET /projects 200 in 58ms (compile: 3ms, render: 54ms)
+ GET /thoughts 200 in 33ms (compile: 4ms, render: 29ms)
+ GET /about 200 in 21ms (compile: 3ms, render: 18ms)
+ GET / 200 in 64ms (compile: 3ms, render: 61ms)
+✓ Compiled in 234ms
+✓ Compiled in 131ms
+✓ Compiled in 123ms
+✓ Compiled in 138ms
+ GET / 200 in 120ms (compile: 86ms, render: 35ms)
+ GET / 200 in 25ms (compile: 3ms, render: 22ms)
+✓ Compiled in 85ms
+✓ Compiled in 73ms
+✓ Compiled in 88ms
+ GET / 200 in 350ms (compile: 3ms, render: 347ms)
+ GET /about 200 in 510ms (compile: 317ms, render: 193ms)
+ GET /projects 200 in 165ms (compile: 94ms, render: 71ms)
+ GET /experience 200 in 319ms (compile: 124ms, render: 196ms)
+ GET /thoughts 200 in 30ms (compile: 6ms, render: 24ms)
+ GET /about 200 in 132ms (compile: 11ms, render: 122ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)

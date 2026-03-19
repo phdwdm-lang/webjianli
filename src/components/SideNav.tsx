@@ -1,16 +1,16 @@
 "use client";
 
+import { memo, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
   type MotionValue,
 } from "framer-motion";
 import { Home, User, Rocket, Clock, Pen, Sun, Moon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { NAV_STYLES } from "@/constants/theme";
 import { useDockIconMotion } from "@/hooks/useDockIconMotion";
 import { useSideNavState } from "@/hooks/useSideNavState";
+import { useRouteTransitionNavigation } from "@/components/common/RouteTransitionShell";
 
 interface NavItem {
   icon: React.ElementType;
@@ -59,8 +59,13 @@ const BASE_SIZE = 48;
 const MAX_SIZE = 72;
 const MAGNIFICATION_RANGE = 150;
 
-export function SideNav() {
-  const pathname = usePathname();
+function SideNavComponent() {
+  const {
+    activePathname,
+    navigateWithTransition,
+    prefetchRoute,
+    registerNavigationSnapshotPreparation,
+  } = useRouteTransitionNavigation();
   const {
     mouseY,
     isDark,
@@ -69,21 +74,29 @@ export function SideNav() {
     handleMouseLeave,
     handleHoverStart,
     handleHoverEnd,
+    clearInteractionState,
     toggleTheme,
   } = useSideNavState();
+
+  useEffect(() => {
+    registerNavigationSnapshotPreparation(clearInteractionState);
+
+    return () => {
+      registerNavigationSnapshotPreparation(null);
+    };
+  }, [clearInteractionState, registerNavigationSnapshotPreparation]);
 
   return (
     <motion.nav
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, x: -12 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4, delay: 0.3 }}
-      className="flex flex-col items-center p-2 rounded-[28px] backdrop-blur-2xl border"
+      initial={false}
+      className="route-transition-live-nav flex flex-col items-center p-2 rounded-[28px] backdrop-blur-2xl border"
       style={{
         backgroundColor: NAV_STYLES.glassBackground,
         borderColor: NAV_STYLES.glassBorder,
         boxShadow: NAV_STYLES.shadow,
+        viewTransitionName: "side-nav",
       }}
     >
       {NAV_ITEMS.map((item, index) => (
@@ -92,16 +105,20 @@ export function SideNav() {
           item={item}
           mouseY={mouseY}
           isHovered={hoveredIndex === index}
-          isActive={item.href === pathname}
+          isActive={item.href === activePathname}
           onHoverStart={() => handleHoverStart(index)}
           onHoverEnd={handleHoverEnd}
           isDark={isDark}
           onToggle={item.isToggle ? toggleTheme : undefined}
+          onNavigate={item.href ? navigateWithTransition : undefined}
+          onPrefetch={item.href ? prefetchRoute : undefined}
         />
       ))}
     </motion.nav>
   );
 }
+
+export const SideNav = memo(SideNavComponent);
 
 interface DockIconProps {
   item: NavItem;
@@ -112,6 +129,8 @@ interface DockIconProps {
   onHoverEnd: () => void;
   isDark: boolean;
   onToggle?: () => void;
+  onNavigate?: (href: string) => void;
+  onPrefetch?: (href: string) => void;
 }
 
 function DockIcon({
@@ -123,6 +142,8 @@ function DockIcon({
   onHoverEnd,
   isDark,
   onToggle,
+  onNavigate,
+  onPrefetch,
 }: DockIconProps) {
   const Icon = item.isToggle ? (isDark ? Moon : Sun) : item.icon;
   const { ref, size, iconScale } = useDockIconMotion({
@@ -163,7 +184,20 @@ function DockIcon({
 
   return (
     <div className="relative flex items-center justify-center">
-      {item.href ? <Link href={item.href}>{iconElement}</Link> : iconElement}
+      {item.href ? (
+        <button
+          type="button"
+          aria-label={item.label}
+          aria-current={isActive ? "page" : undefined}
+          onClick={() => onNavigate?.(item.href!)}
+          onMouseEnter={() => onPrefetch?.(item.href!)}
+          className="rounded-full"
+        >
+          {iconElement}
+        </button>
+      ) : (
+        iconElement
+      )}
 
       <AnimatePresence>
         {isHovered && (

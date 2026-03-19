@@ -16,7 +16,7 @@ export const PROFILE = {
     "数据分析",
     "Vibe Coding",
   ],
-  tools: ["墨刀", "Figma", "Axure", "Xmind", "Windsurf", "Cursor"],
+  tools: ["墨刀", "Axure", "Codex", "Windsurf", "Cursor", "Figma"],
 } as const;
 
 export const EDUCATION = [
@@ -70,7 +70,7 @@ export const PROJECTS = [
     name: "猹杀 Wolfcha",
     subtitle: "AI 狼人杀游戏",
     team: "2人团队",
-    period: "2025.01 - 至今",
+    period: "2026.01 - 至今",
     link: "https://wolf-cha.com",
     github: "https://github.com/oil-oil/wolfcha",
     description:
@@ -99,14 +99,21 @@ export const PROJECTS = [
       "Stripe",
     ],
     role: "产品设计 + 体验设计 + 测试 + 商业化",
+    images: [
+      { src: "/wolfcha/banner.png", alt: "Wolfcha Banner" },
+      { src: "/wolfcha/白天阶段游戏截图.png", alt: "白天阶段讨论" },
+      { src: "/wolfcha/夜晚阶段游戏截图.png", alt: "夜晚阶段行动" },
+    ],
   },
   {
     name: "BBQ Translator",
     subtitle: "AI 漫画翻译工具",
     team: "独立完成",
-    period: "2025.01 - 2025.02",
+    period: "2026.01 - 2026.02",
     github: "https://github.com/phdwdm-lang/bbq-translator",
-    videoLink: "http://xhslink.com/o/3z4pCHVjBM9",
+    resourceLink:
+      "https://www.xiaohongshu.com/discovery/item/69abd1750000000022023e3d?source=webshare&xhsshare=pc_web&xsec_token=ABvhBpVFcAmN2GsYMPmbao4I8Cn240ET_Ryh9p-qUn2lY=&xsec_source=pc_share",
+    resourceLabel: "相关介绍",
     description:
       "独立完成产品设计、UI设计与全栈开发，打造Windows桌面端AI漫画翻译工具，支持8种文件格式、25种目标语言。",
     stats: [
@@ -132,6 +139,11 @@ export const PROJECTS = [
       "PyTorch",
     ],
     role: "产品设计 + UI设计 + 全栈开发（独立完成）",
+    images: [
+      { src: "/BBQ-translator/000.png", alt: "BBQ Translator 海报" },
+      { src: "/BBQ-translator/书架.png", alt: "资产管理页" },
+      { src: "/BBQ-translator/首页.png", alt: "工作台首页" },
+    ],
   },
 ] as const;
 

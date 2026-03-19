@@ -1,11 +1,11 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { Home, User, Rocket, Clock, Pen, Sun, Moon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { NAV_STYLES } from "@/constants/theme";
+import { useRouteTransitionNavigation } from "@/components/common/RouteTransitionShell";
 
 interface NavItem {
   icon: React.ElementType;
@@ -49,9 +49,10 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-export function MobileNav() {
-  const pathname = usePathname();
+function MobileNavComponent() {
   const { resolvedTheme, setTheme } = useTheme();
+  const { activePathname, navigateWithTransition, prefetchRoute } =
+    useRouteTransitionNavigation();
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = () => {
@@ -60,19 +61,18 @@ export function MobileNav() {
 
   return (
     <motion.nav
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.3 }}
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around px-4 py-3 backdrop-blur-2xl border-t"
+      initial={false}
+      className="route-transition-live-nav md:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around px-4 py-3 backdrop-blur-2xl border-t"
       style={{
         backgroundColor: NAV_STYLES.glassBackground,
         borderColor: NAV_STYLES.glassBorder,
         boxShadow: NAV_STYLES.shadow,
+        viewTransitionName: "mobile-nav",
       }}
     >
       {NAV_ITEMS.map((item) => {
         const Icon = item.isToggle ? (isDark ? Moon : Sun) : item.icon;
-        const isActive = item.href === pathname;
+        const isActive = item.href === activePathname;
 
         const iconElement = (
           <motion.div
@@ -96,9 +96,17 @@ export function MobileNav() {
         );
 
         return item.href ? (
-          <Link key={item.label} href={item.href}>
+          <button
+            key={item.label}
+            type="button"
+            aria-label={item.label}
+            aria-current={isActive ? "page" : undefined}
+            onClick={() => navigateWithTransition(item.href!)}
+            onTouchStart={() => prefetchRoute(item.href!)}
+            onMouseEnter={() => prefetchRoute(item.href!)}
+          >
             {iconElement}
-          </Link>
+          </button>
         ) : (
           <div key={item.label}>{iconElement}</div>
         );
@@ -106,3 +114,5 @@ export function MobileNav() {
     </motion.nav>
   );
 }
+
+export const MobileNav = memo(MobileNavComponent);

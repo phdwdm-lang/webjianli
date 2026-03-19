@@ -57,8 +57,11 @@ export function TypewriterText({
         const t = setTimeout(() => setCharIndex((c) => c - 1), curDeletingSpeed);
         return () => clearTimeout(t);
       } else {
-        setTextIndex((prev) => (prev + 1) % texts.length);
-        setPhase("typing");
+        const timeout = setTimeout(() => {
+          setTextIndex((prev) => (prev + 1) % texts.length);
+          setPhase("typing");
+        }, 0);
+        return () => clearTimeout(timeout);
       }
     }
   }, [isInView, phase, charIndex, textIndex, texts, typingSpeed, deletingSpeed, pauseDuration, typingSpeedMap, deletingSpeedMap]);

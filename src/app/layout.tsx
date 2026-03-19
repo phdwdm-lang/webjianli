@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono, Syne, Noto_Serif_SC } from "next/font/google";
 import { THEME_STYLE_TEXT } from "@/constants/theme";
+import { AppChrome } from "@/components/common/AppChrome";
 import { ClientProviders } from "@/components/common/ClientProviders";
-import { MobileNav } from "@/components/MobileNav";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -54,8 +54,7 @@ export default function RootLayout({
         className={`${dmSans.variable} ${dmMono.variable} ${syne.variable} ${notoSerif.variable} antialiased`}
       >
         <ClientProviders>
-          {children}
-          <MobileNav />
+          <AppChrome>{children}</AppChrome>
         </ClientProviders>
       </body>
     </html>

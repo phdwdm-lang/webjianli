@@ -1,60 +1,65 @@
-import { Tag } from "lucide-react";
-import PageContainer from "@/components/PageContainer";
-import PaperPlaneTrail from "@/components/effects/PaperPlaneTrail";
-import { THOUGHTS } from "@/constants/profile";
+import type { CSSProperties } from "react";
+import {
+  Caveat,
+  Long_Cang,
+  Ma_Shan_Zheng,
+  ZCOOL_XiaoWei,
+  Zhi_Mang_Xing,
+} from "next/font/google";
+import { ThoughtsCanvas } from "@/app/thoughts/components/ThoughtsCanvas";
 import { CSS_VARS } from "@/constants/theme";
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: false,
+});
+
+const maShanZheng = Ma_Shan_Zheng({
+  variable: "--font-handwriting",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+});
+
+const xiaowei = ZCOOL_XiaoWei({
+  variable: "--font-xiaowei",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+});
+
+const longCang = Long_Cang({
+  variable: "--font-longcang",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+});
+
+const zhiMangXing = Zhi_Mang_Xing({
+  variable: "--font-zhimang",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+});
 
 export default function ThoughtsPage() {
   return (
-    <PageContainer
-      title="日常分享与思考"
-      subtitle="产品思考、职业成长与复盘"
-      themeColor={CSS_VARS.themeThoughts}
+    <div
+      className={`section-page ${caveat.variable} ${maShanZheng.variable} ${xiaowei.variable} ${longCang.variable} ${zhiMangXing.variable}`}
+      style={
+        {
+          "--section-color": CSS_VARS.themeThoughts,
+        } as CSSProperties
+      }
     >
-      <div className="space-y-5">
-        {THOUGHTS.map((thought, index) => (
-          <article
-            key={index}
-            className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all hover:border-[var(--section-color)] hover:-translate-y-1 cursor-pointer"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span
-                className="text-xs text-[var(--muted)] px-3 py-1 rounded-full"
-                style={{
-                  backgroundColor:
-                    "color-mix(in oklab, var(--section-color) 10%, var(--tag-bg))",
-                }}
-              >
-                {thought.date}
-              </span>
-            </div>
-            <h2 className="text-base font-semibold mb-2">{thought.title}</h2>
-            <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">
-              {thought.summary}
-            </p>
-            <div className="flex flex-wrap items-center gap-2">
-              {thought.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 text-xs text-[var(--section-color)] rounded-md border border-transparent hover:border-[var(--section-color)] transition-colors"
-                  style={{
-                    backgroundColor:
-                      "color-mix(in oklab, var(--section-color) 8%, var(--tag-bg))",
-                  }}
-                >
-                  <Tag size={10} />
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
-
-        {/* Placeholder */}
-        <div className="text-center py-8 text-sm text-[var(--muted-light)]">
-          更多内容持续更新中...
-        </div>
-      </div>
-    </PageContainer>
+      <ThoughtsCanvas />
+    </div>
   );
 }

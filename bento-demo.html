@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彭焕东 - Bento 个人主页 Demo V7</title>
+    <!-- 引入 Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        theme: {
+                            pardon: 'var(--theme-pardon)',
+                        }
+                    },
+                    animation: {
+                        'scroll-left': 'scroll-left 25s linear infinite',
+                        'scroll-right': 'scroll-right 25s linear infinite',
+                    },
+                    keyframes: {
+                        'scroll-left': {
+                            '0%': { transform: 'translate3d(0, 0, 0)' },
+                            '100%': { transform: 'translate3d(-50%, 0, 0)' },
+                        },
+                        'scroll-right': {
+                            '0%': { transform: 'translate3d(-50%, 0, 0)' },
+                            '100%': { transform: 'translate3d(0, 0, 0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* 强制背景为纯白 */
+            --background: #ffffff;
+            --foreground: #0f172a;
+            --muted: #64748b;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --theme-pardon: #FFB800;
+            
+            --pardon-glow: radial-gradient(circle at 70% 30%, rgba(255,184,0,0.05) 0%, transparent 60%);
+            --grid-bg: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-image: var(--grid-bg);
+            background-size: 20px 20px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* 基础卡片样式 */
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: staggerFadeIn 0.6s forwards;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .bento-card-inner-clip {
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes staggerFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bento-card:nth-child(1) { animation-delay: 0.1s; }
+        .bento-card:nth-child(2) { animation-delay: 0.2s; }
+        .bento-card:nth-child(3) { animation-delay: 0.3s; }
+        .bento-card:nth-child(4) { animation-delay: 0.4s; }
+        .bento-card:nth-child(5) { animation-delay: 0.5s; }
+        .bento-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .bento-card:hover {
+            border-color: rgba(255,184,0,0.5);
+            transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), -5px 10px 30px -10px rgba(255,184,0,0.15);
+            z-index: 10;
+        }
+
+        /* Profile 重新排版 */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+            background-image: var(--pardon-glow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2.5rem 2rem;
+        }
+
+        /* 徒步 / 耐造 卡片 */
+        .card-hiker {
+            grid-column: span 1;
+            grid-row: span 2;
+            background: linear-gradient(180deg, var(--card-bg) 0%, rgba(255,184,0,0.05) 100%);
+            overflow: hidden; 
+        }
+        .card-hiker:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Location & MBTI */
+        .card-location { grid-column: span 1; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;}
+        .card-mbti { grid-column: span 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; overflow: hidden;}
+
+        /* Hobbies */
+        .card-hobbies { 
+            grid-column: span 2; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            background-color: #fafafa;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        
+        .card-tools { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; }
+
+        /* 能力雷达 - Flip Card */
+        .card-capabilities {
+            grid-column: span 4;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            background: transparent;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+            transform: none !important;
+            perspective: 1000px;
+        }
+        .card-capabilities:hover { border-color: transparent; box-shadow: none; z-index: auto; }
+
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 100%;
+            min-height: 160px; 
+            perspective: 1000px;
+            animation: staggerFadeIn 0.6s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .flip-card-front {
+            background-color: var(--card-bg);
+        }
+
+        .flip-card-back {
+            background-color: var(--card-bg);
+            transform: rotateY(180deg);
+            border-color: var(--theme-pardon);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,184,0,0.05) 100%);
+            align-items: flex-start;
+            padding: 1.25rem;
+        }
+
+        /* 兴趣卡片横向胶囊无缝滚动 */
+        .scrolling-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            overflow: hidden;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 0.5rem 0;
+        }
+        
+        .scrolling-row {
+            display: flex;
+            gap: 0.85rem;
+            padding-right: 0.85rem;
+            width: max-content;
+        }
+        
+        .scrolling-row:hover {
+            animation-play-state: paused;
+        }
+
+        .hobby-capsule-h {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 30px;
+            background-color: #ffffff; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            color: var(--foreground);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .hobby-capsule-h i {
+            color: var(--muted);
+            width: 16px;
+            height: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .hobby-capsule-h:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(255,184,0,0.15);
+            border: 1px solid var(--theme-pardon);
+            color: var(--theme-pardon);
+        }
+        
+        .hobby-capsule-h:hover i {
+            color: var(--theme-pardon);
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        /* 模块统一标题样式 */
+        .module-title {
+            color: var(--foreground);
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+        
+        .module-title-icon {
+            padding: 0.35rem;
+            border-radius: 9999px;
+            background-color: rgba(255,184,0,0.12);
+            color: var(--theme-pardon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(3, 1fr); }
+            .card-capabilities { grid-column: span 3; grid-template-columns: repeat(2, 1fr); }
+            .card-tools, .card-hobbies { grid-column: span 3; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-profile { grid-column: span 2; }
+            .card-hiker { grid-column: span 1; grid-row: span 1; }
+            .card-capabilities { grid-column: span 2; grid-template-columns: 1fr; }
+            .card-tools, .card-hobbies { grid-column: span 2; }
+        }
+        @media (max-width: 480px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-card { grid-column: span 1 !important; }
+            .card-capabilities { grid-column: span 1 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+        
+        <!-- 1. Profile (占据左上 2x2，简历下载按钮恢复右上角) -->
+        <div class="bento-card card-profile relative">
+            <div class="bento-card-inner-clip"></div>
+            
+            <!-- 右上角简历下载按钮 -->
+            <a href="/public/彭焕东-18998360787.pdf" target="_blank" download class="absolute top-6 right-6 p-2.5 md:p-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-theme-pardon hover:bg-theme-pardon hover:text-white hover:border-theme-pardon transition-all hover:scale-110 hover:shadow-lg flex items-center justify-center group z-10" title="下载简历">
+                <i data-lucide="file-down" class="w-5 h-5 group-hover:translate-y-0.5 transition-transform"></i>
+            </a>
+
+            <div class="flex flex-col gap-1 w-full mt-2">
+                <div class="module-title mb-2">
+                    <div class="module-title-icon">
+                        <i data-lucide="quote" class="w-4 h-4"></i>
+                    </div>
+                    座右铭 Motto
+                </div>
+                <h2 class="text-3xl font-serif font-bold text-[var(--foreground)] leading-tight">道阻且长 · 行则将至</h2>
+            </div>
+            
+            <div class="mt-auto w-full">
+                <div class="flex items-center gap-4 mb-3">
+                    <h1 class="text-5xl sm:text-6xl md:text-[4rem] font-black tracking-tight text-[var(--foreground)]">
+                        彭焕东 <span class="text-theme-pardon ml-2">Pardon</span>
+                    </h1>
+                </div>
+                <p class="text-xl sm:text-2xl font-bold text-[var(--muted)]">懂用研、能落地的 AI 产品经理</p>
+            </div>
+        </div>
+
+        <!-- 2. 深刻印象：徒步产品经理 -> 耐造 (占据 1x2，动画改为向后缩小) -->
+        <div class="bento-card card-hiker group cursor-default">
+            <!-- 默认内容：向后缩小淡出 -->
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform group-hover:scale-[0.8] group-hover:opacity-0">
+                <div class="p-3 bg-[var(--card-border)] rounded-2xl mb-4 group-hover:bg-[var(--theme-pardon)] group-hover:text-white transition-colors text-[var(--foreground)]">
+                    <i data-lucide="map" class="w-8 h-8"></i>
+                </div>
+                <div class="text-xl font-black text-[var(--foreground)] tracking-wide mb-1 whitespace-nowrap">
+                    十天走七条徒步线的
+                </div>
+                <div class="text-xl font-black text-theme-pardon tracking-wide whitespace-nowrap">
+                    产品经理
+                </div>
+            </div>
+            <!-- 悬浮内容：从放大到正常 -->
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform scale-[1.2] opacity-0 group-hover:scale-100 group-hover:opacity-100">
+                <div class="p-4 bg-[var(--theme-pardon)] rounded-full mb-3 shadow-[0_0_20px_rgba(255,184,0,0.4)]">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
+                </div>
+                <div class="text-2xl font-black text-theme-pardon tracking-widest whitespace-nowrap">
+                    耐造
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 时区卡片 (占据 1x1，标题样式统一) -->
+        <div class="bento-card card-location group cursor-default">
+            <div class="flex justify-between items-start w-full">
+                <div class="module-title">
+                    <div class="module-title-icon">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    </div>
+                    位置 Location
+                </div>
+                <div class="text-theme-pardon animate-pulse mt-1">●</div>
+            </div>
+            <div class="mt-auto">
+                <div class="text-3xl font-bold mb-1 text-[var(--foreground)]">广州, 中国</div>
+                <div class="text-sm font-mono text-[var(--muted)]" id="clock">12:00:00 CST</div>
+            </div>
+        </div>
+
+        <!-- 4. MBTI (占据 1x1，标题样式统一) -->
+        <div class="bento-card card-mbti group cursor-default">
+            <div class="module-title w-full">
+                <div class="module-title-icon">
+                    <i data-lucide="brain" class="w-4 h-4"></i>
+                </div>
+                人格 MBTI
+            </div>
+            <div class="flex-1 w-full flex flex-col items-center justify-center mt-2">
+                <div class="text-5xl font-black font-mono transition-transform duration-500 group-hover:scale-110 text-theme-pardon">
+                    ENFJ
+                </div>
+                <div class="text-xs text-[var(--muted)] mt-2 text-center">主人公人格<br>同理心与驱动力</div>
+            </div>
+        </div>
+
+        <!-- 5. 爱好卡片 (占据 2x1，标题样式对齐，内容为确定的8项) -->
+        <div class="bento-card card-hobbies">
+            <div class="module-title mb-4 px-6">
+                <div class="module-title-icon">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                兴趣 Hobbies
+            </div>
+            <div class="scrolling-wrapper">
+                <!-- 第一行：向左滚动 (徒步、漫画、脱口秀、电影) - 4组确保50%无缝 -->
+                <div class="scrolling-row animate-scroll-left hover:pause-animation" style="will-change: transform;">
+                    <div class="hobby-capsule-h"><i data-lucide="footprints"></i>徒步</div>
+                    <div class="hobby-capsule-h"><i data-lucide="book-open-text"></i>漫画</div>
+                    <div class="hobby-capsule-h"><i data-lucide="mic-2"></i>脱口秀</div>
+                    <div class="hobby-capsule-h"><i data-lucide="clapperboard"></i>电影</div>
+                    
+                    <!-- 复制组2 -->
+                    <div class="hobby-capsule-h"><i data-lucide="footprints"></i>徒步</div>
+                    <div class="hobby-capsule-h"><i data-lucide="book-open-text"></i>漫画</div>
+                    <div class="hobby-capsule-h"><i data-lucide="mic-2"></i>脱口秀</div>
+                    <div class="hobby-capsule-h"><i data-lucide="clapperboard"></i>电影</div>
+
+                    <!-- 复制组3 -->
+                    <div class="hobby-capsule-h"><i data-lucide="footprints"></i>徒步</div>
+                    <div class="hobby-capsule-h"><i data-lucide="book-open-text"></i>漫画</div>
+                    <div class="hobby-capsule-h"><i data-lucide="mic-2"></i>脱口秀</div>
+                    <div class="hobby-capsule-h"><i data-lucide="clapperboard"></i>电影</div>
+
+                    <!-- 复制组4 -->
+                    <div class="hobby-capsule-h"><i data-lucide="footprints"></i>徒步</div>
+                    <div class="hobby-capsule-h"><i data-lucide="book-open-text"></i>漫画</div>
+                    <div class="hobby-capsule-h"><i data-lucide="mic-2"></i>脱口秀</div>
+                    <div class="hobby-capsule-h"><i data-lucide="clapperboard"></i>电影</div>
+                </div>
+                <!-- 第二行：向右滚动 (单机游戏、旅行、美食、阅读) - 4组确保50%无缝 -->
+                <div class="scrolling-row animate-scroll-right hover:pause-animation" style="width: max-content; will-change: transform;">
+                    <div class="hobby-capsule-h"><i data-lucide="gamepad-2"></i>单机游戏</div>
+                    <div class="hobby-capsule-h"><i data-lucide="plane"></i>旅行</div>
+                    <div class="hobby-capsule-h"><i data-lucide="utensils"></i>美食</div>
+                    <div class="hobby-capsule-h"><i data-lucide="library"></i>阅读</div>
+
+                    <!-- 复制组2 -->
+                    <div class="hobby-capsule-h"><i data-lucide="gamepad-2"></i>单机游戏</div>
+                    <div class="hobby-capsule-h"><i data-lucide="plane"></i>旅行</div>
+                    <div class="hobby-capsule-h"><i data-lucide="utensils"></i>美食</div>
+                    <div class="hobby-capsule-h"><i data-lucide="library"></i>阅读</div>
+
+                    <!-- 复制组3 -->
+                    <div class="hobby-capsule-h"><i data-lucide="gamepad-2"></i>单机游戏</div>
+                    <div class="hobby-capsule-h"><i data-lucide="plane"></i>旅行</div>
+                    <div class="hobby-capsule-h"><i data-lucide="utensils"></i>美食</div>
+                    <div class="hobby-capsule-h"><i data-lucide="library"></i>阅读</div>
+
+                    <!-- 复制组4 -->
+                    <div class="hobby-capsule-h"><i data-lucide="gamepad-2"></i>单机游戏</div>
+                    <div class="hobby-capsule-h"><i data-lucide="plane"></i>旅行</div>
+                    <div class="hobby-capsule-h"><i data-lucide="utensils"></i>美食</div>
+                    <div class="hobby-capsule-h"><i data-lucide="library"></i>阅读</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. 工具栈卡片 (占据 2x1，标题样式对齐) -->
+        <div class="bento-card card-tools">
+            <div class="module-title mb-4">
+                <div class="module-title-icon">
+                    <i data-lucide="wrench" class="w-4 h-4"></i>
+                </div>
+                工具 Tools
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[rgba(255,184,0,0.05)] border border-[rgba(255,184,0,0.15)] hover:bg-[rgba(255,184,0,0.1)] transition-colors group cursor-default">
+                    <div class="p-1.5 rounded-lg bg-[rgba(255,184,0,0.15)] text-theme-pardon group-hover:scale-110 transition-transform">
+                        <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium text-[var(--foreground)]">墨刀</span>
+                </div>
+                
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[rgba(255,184,0,0.05)] border border-[rgba(255,184,0,0.15)] hover:bg-[rgba(255,184,0,0.1)] transition-colors group cursor-default">
+                    <div class="p-1.5 rounded-lg bg-[rgba(255,184,0,0.15)] text-theme-pardon group-hover:scale-110 transition-transform">
+                        <i data-lucide="layout-template" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium text-[var(--foreground)]">Axure</span>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[rgba(255,184,0,0.05)] border border-[rgba(255,184,0,0.15)] hover:bg-[rgba(255,184,0,0.1)] transition-colors group cursor-default">
+                    <div class="p-1.5 rounded-lg bg-[rgba(255,184,0,0.15)] text-theme-pardon group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium text-[var(--foreground)]">Codex</span>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[rgba(255,184,0,0.05)] border border-[rgba(255,184,0,0.15)] hover:bg-[rgba(255,184,0,0.1)] transition-colors group cursor-default">
+                    <div class="p-1.5 rounded-lg bg-[rgba(255,184,0,0.15)] text-theme-pardon group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium text-[var(--foreground)]">Windsurf</span>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[rgba(255,184,0,0.05)] border border-[rgba(255,184,0,0.15)] hover:bg-[rgba(255,184,0,0.1)] transition-colors group cursor-default">
+                    <div class="p-1.5 rounded-lg bg-[rgba(255,184,0,0.15)] text-theme-pardon group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium text-[var(--foreground)]">Cursor</span>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[rgba(255,184,0,0.05)] border border-[rgba(255,184,0,0.15)] hover:bg-[rgba(255,184,0,0.1)] transition-colors group cursor-default">
+                    <div class="p-1.5 rounded-lg bg-[rgba(255,184,0,0.15)] text-theme-pardon group-hover:scale-110 transition-transform">
+                        <i data-lucide="figma" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-sm font-medium text-[var(--foreground)]">Figma</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 能力雷达 (跨越底部 4 列，支持点击切换) -->
+        <div class="card-capabilities">
+            <!-- Cap 1: AI 产品实战 -->
+            <div class="flip-card" id="cap-1" style="animation-delay: 0.7s;">
+                <div class="flip-card-inner">
+                    <!-- 正面 -->
+                    <div class="flip-card-front">
+                        <i data-lucide="bot" class="w-8 h-8 text-theme-pardon mb-3"></i>
+                        <h4 class="font-bold text-[1.1rem]">AI 产品实战</h4>
+                    </div>
+                    <!-- 背面 -->
+                    <div class="flip-card-back">
+                        <div class="flex items-center gap-2 mb-2 w-full border-b border-[var(--card-border)] pb-2">
+                            <i data-lucide="bot" class="w-4 h-4 text-theme-pardon"></i>
+                            <h4 class="font-bold text-sm text-[var(--foreground)]">核心数据</h4>
+                        </div>
+                        <ul class="text-[13px] text-[var(--muted)] leading-relaxed text-left space-y-1 list-disc pl-4 mt-1">
+                            <li>独立/协作完成2款AI产品上线</li>
+                            <li>累计3,700+用户，5,800+交互</li>
+                            <li>AI模型选型与多模型编排经验</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cap 2: 用研方法论 -->
+            <div class="flip-card" id="cap-2" style="animation-delay: 0.8s;">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i data-lucide="users-round" class="w-8 h-8 text-theme-pardon mb-3"></i>
+                        <h4 class="font-bold text-[1.1rem]">用研方法论</h4>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flex items-center gap-2 mb-2 w-full border-b border-[var(--card-border)] pb-2">
+                            <i data-lucide="users-round" class="w-4 h-4 text-theme-pardon"></i>
+                            <h4 class="font-bold text-sm text-[var(--foreground)]">项目经验</h4>
+                        </div>
+                        <ul class="text-[13px] text-[var(--muted)] leading-relaxed text-left space-y-1 list-disc pl-4 mt-1">
+                            <li>主导2,200万+用户产品调研</li>
+                            <li>精通问卷、竞品分析与访谈</li>
+                            <li>产出20+份走查报告</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cap 3: 全链路构建 -->
+            <div class="flip-card" id="cap-3" style="animation-delay: 0.9s;">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i data-lucide="layers" class="w-8 h-8 text-theme-pardon mb-3"></i>
+                        <h4 class="font-bold text-[1.1rem]">全链路构建</h4>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flex items-center gap-2 mb-2 w-full border-b border-[var(--card-border)] pb-2">
+                            <i data-lucide="layers" class="w-4 h-4 text-theme-pardon"></i>
+                            <h4 class="font-bold text-sm text-[var(--foreground)]">Vibe Coding</h4>
+                        </div>
+                        <ul class="text-[13px] text-[var(--muted)] leading-relaxed text-left space-y-1 list-disc pl-4 mt-1">
+                            <li>调研→设计→开发→运营全通</li>
+                            <li>借助AI编程实现快速落地</li>
+                            <li>独立完成Windows桌面端开发</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cap 4: 商业化与增长 -->
+            <div class="flip-card" id="cap-4" style="animation-delay: 1.0s;">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i data-lucide="trending-up" class="w-8 h-8 text-theme-pardon mb-3"></i>
+                        <h4 class="font-bold text-[1.1rem]">商业化与增长</h4>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flex items-center gap-2 mb-2 w-full border-b border-[var(--card-border)] pb-2">
+                            <i data-lucide="trending-up" class="w-4 h-4 text-theme-pardon"></i>
+                            <h4 class="font-bold text-sm text-[var(--foreground)]">变现能力</h4>
+                        </div>
+                        <ul class="text-[13px] text-[var(--muted)] leading-relaxed text-left space-y-1 list-disc pl-4 mt-1">
+                            <li>BD拉取3家AI赞助商</li>
+                            <li>集成Stripe支付产生收益</li>
+                            <li>擅长转化洞察为产品决策</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 初始化 Lucide 图标
+        lucide.createIcons();
+
+        // 时钟逻辑
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('clock').textContent = timeString + ' CST';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 能力卡片翻转逻辑：悬浮和点击都能触发，移出不翻回，只有点击可以 toggle 回来
+        document.addEventListener('DOMContentLoaded', () => {
+            const flipCards = document.querySelectorAll('.flip-card');
+            
+            flipCards.forEach(card => {
+                // 鼠标移入时触发翻转
+                card.addEventListener('mouseenter', () => {
+                    card.classList.add('is-flipped');
+                });
+                
+                // 点击时触发 toggle（支持移动端纯点击，也支持桌面端点击翻回）
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
