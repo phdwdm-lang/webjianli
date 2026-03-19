@@ -52,7 +52,7 @@ const zhiMangXing = Zhi_Mang_Xing({
 export default function ThoughtsPage() {
   return (
     <div
-      className={`section-page ${caveat.variable} ${maShanZheng.variable} ${xiaowei.variable} ${longCang.variable} ${zhiMangXing.variable}`}
+      className={`section-page relative overflow-hidden ${caveat.variable} ${maShanZheng.variable} ${xiaowei.variable} ${longCang.variable} ${zhiMangXing.variable}`}
       style={
         {
           "--section-color": CSS_VARS.themeThoughts,

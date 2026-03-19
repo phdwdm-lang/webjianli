@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { EFFECT_COLORS } from "@/constants/theme";
+import { cn } from "@/lib/utils";
 
 const THEME_COLORS_LIGHT = EFFECT_COLORS.particleTrail;
+
+type ParticleTrailScope = "parent" | "viewport";
 
 interface Particle {
   x: number;
@@ -17,7 +20,15 @@ interface Particle {
   maxLife: number;
 }
 
-export default function ParticleTrail() {
+interface ParticleTrailProps {
+  scope?: ParticleTrailScope;
+  className?: string;
+}
+
+export default function ParticleTrail({
+  scope = "parent",
+  className,
+}: ParticleTrailProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const prevMouseRef = useRef({ x: 0, y: 0, initialized: false });
@@ -73,25 +84,42 @@ export default function ParticleTrail() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const parent = canvas.parentElement;
-    if (!parent) return;
+    const parent = scope === "parent" ? canvas.parentElement : null;
+    if (scope === "parent" && !parent) return;
 
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
       dprRef.current = dpr;
-      const rect = parent.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
+      const width =
+        scope === "viewport"
+          ? window.innerWidth
+          : (parent?.getBoundingClientRect().width ?? 0);
+      const height =
+        scope === "viewport"
+          ? window.innerHeight
+          : (parent?.getBoundingClientRect().height ?? 0);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     resizeCanvas();
-    const resizeObserver = new ResizeObserver(resizeCanvas);
-    resizeObserver.observe(parent);
+    const resizeObserver =
+      scope === "parent" && parent ? new ResizeObserver(resizeCanvas) : null;
+
+    if (parent && resizeObserver) {
+      resizeObserver.observe(parent);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
 
     const getCanvasCoords = (e: MouseEvent) => {
+      if (scope === "viewport") {
+        return { x: e.clientX, y: e.clientY };
+      }
+
       const rect = canvas.getBoundingClientRect();
       return { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
@@ -166,17 +194,23 @@ export default function ParticleTrail() {
 
     return () => {
       cancelAnimationFrame(animFrameRef.current);
-      resizeObserver.disconnect();
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", resizeCanvas);
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("click", handleClick);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [spawnTrailParticles, spawnRipple]);
+  }, [scope, spawnTrailParticles, spawnRipple]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none z-[1]"
+      aria-hidden="true"
+      className={cn(
+        "pointer-events-none z-[1]",
+        scope === "viewport" ? "fixed inset-0" : "absolute inset-0",
+        className
+      )}
     />
   );
 }

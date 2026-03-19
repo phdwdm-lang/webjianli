@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import { CSS_VARS } from "@/constants/theme";
+import ParticleTrail from "@/components/ParticleTrail";
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export default function PageContainer({
   return (
     <div
       className={cn(
-        "min-h-screen bg-[var(--background)] section-page",
+        "relative min-h-screen bg-[var(--background)] section-page",
         pageClassName
       )}
       style={
@@ -36,9 +37,10 @@ export default function PageContainer({
         } as CSSProperties
       }
     >
+      <ParticleTrail />
       <div
         className={cn(
-          "max-w-3xl mx-auto px-6 py-12 pb-24 md:pb-12",
+          "relative z-10 max-w-3xl mx-auto px-6 py-12 pb-24 md:pb-12",
           contentClassName
         )}
       >

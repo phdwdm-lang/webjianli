@@ -20,11 +20,13 @@ import { BouncyCard } from "@/components/playground/BouncyCard";
 import { TextRevealByWord } from "@/components/playground/TextRevealByWord";
 import { ColorPalettePreview } from "@/components/playground/ColorPalettePreview";
 import { EffectSwitcher } from "@/components/effects/EffectSwitcher";
+import ParticleTrail from "@/components/ParticleTrail";
 
 export default function PlaygroundPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] p-6 md:p-12 font-sans">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <div className="relative min-h-screen overflow-hidden bg-[var(--background)] p-6 md:p-12 font-sans">
+      <ParticleTrail />
+      <div className="relative z-10 max-w-6xl mx-auto space-y-16">
         <header>
           <Link
             href="/"

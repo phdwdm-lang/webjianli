@@ -96,7 +96,6 @@ export default function Home() {
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--background)] p-4 md:p-10">
       <ParticleTrail />
-
       <motion.div
         initial={isRouteTransitioning ? false : "hidden"}
         animate="visible"

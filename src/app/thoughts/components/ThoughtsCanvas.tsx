@@ -100,7 +100,7 @@ export function ThoughtsCanvas() {
       />
 
       <div
-        className={`relative h-screen w-full overflow-hidden ${
+        className={`relative z-10 h-screen w-full overflow-hidden ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
         onPointerDown={onViewportPointerDown}
