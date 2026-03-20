@@ -10,7 +10,10 @@ import { Home, User, Rocket, Clock, Pen, Sun, Moon } from "lucide-react";
 import { NAV_STYLES } from "@/constants/theme";
 import { useDockIconMotion } from "@/hooks/useDockIconMotion";
 import { useSideNavState } from "@/hooks/useSideNavState";
-import { useRouteTransitionNavigation } from "@/components/common/RouteTransitionShell";
+import {
+  useRouteTransitionNavigation,
+  useRouteTransitionState,
+} from "@/components/common/RouteTransitionShell";
 
 interface NavItem {
   icon: React.ElementType;
@@ -66,6 +69,7 @@ function SideNavComponent() {
     prefetchRoute,
     registerNavigationSnapshotPreparation,
   } = useRouteTransitionNavigation();
+  const { isRouteTransitioning } = useRouteTransitionState();
   const {
     mouseY,
     isDark,
@@ -96,7 +100,6 @@ function SideNavComponent() {
         backgroundColor: NAV_STYLES.glassBackground,
         borderColor: NAV_STYLES.glassBorder,
         boxShadow: NAV_STYLES.shadow,
-        viewTransitionName: "side-nav",
       }}
     >
       {NAV_ITEMS.map((item, index) => (
@@ -109,7 +112,16 @@ function SideNavComponent() {
           onHoverStart={() => handleHoverStart(index)}
           onHoverEnd={handleHoverEnd}
           isDark={isDark}
-          onToggle={item.isToggle ? toggleTheme : undefined}
+          isRouteTransitioning={isRouteTransitioning}
+          onToggle={
+            item.isToggle
+              ? () => {
+                  if (!isRouteTransitioning) {
+                    toggleTheme();
+                  }
+                }
+              : undefined
+          }
           onNavigate={item.href ? navigateWithTransition : undefined}
           onPrefetch={item.href ? prefetchRoute : undefined}
         />
@@ -128,6 +140,7 @@ interface DockIconProps {
   onHoverStart: () => void;
   onHoverEnd: () => void;
   isDark: boolean;
+  isRouteTransitioning: boolean;
   onToggle?: () => void;
   onNavigate?: (href: string) => void;
   onPrefetch?: (href: string) => void;
@@ -141,6 +154,7 @@ function DockIcon({
   onHoverStart,
   onHoverEnd,
   isDark,
+  isRouteTransitioning,
   onToggle,
   onNavigate,
   onPrefetch,
@@ -189,6 +203,7 @@ function DockIcon({
           type="button"
           aria-label={item.label}
           aria-current={isActive ? "page" : undefined}
+          aria-disabled={isRouteTransitioning ? "true" : undefined}
           onClick={() => onNavigate?.(item.href!)}
           onMouseEnter={() => onPrefetch?.(item.href!)}
           className="rounded-full"

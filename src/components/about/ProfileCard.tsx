@@ -1,6 +1,6 @@
 "use client";
 
-import { FileDown } from "lucide-react";
+import { QrCode } from "lucide-react";
 import AboutModuleTitle from "./AboutModuleTitle";
 import BentoCardShell from "./BentoCardShell";
 import { ABOUT_COPY, ABOUT_MODULE_ICONS } from "@/constants/about";
@@ -22,7 +22,7 @@ export default function ProfileCard() {
         title={ABOUT_COPY.resumeLabel}
         className="group absolute right-6 top-6 z-10 inline-flex items-center justify-center rounded-full border border-[var(--theme-pardon)] bg-[var(--theme-pardon)] p-2.5 text-white shadow-[0_4px_10px_rgba(255,184,0,0.28),inset_0_-1px_0_rgba(0,0,0,0.12)] transition-all duration-200 hover:translate-y-px hover:brightness-95 hover:shadow-[inset_0_2px_5px_rgba(0,0,0,0.2)] active:translate-y-[2px] active:shadow-[inset_0_3px_6px_rgba(0,0,0,0.26)] md:p-3"
       >
-        <FileDown className="h-5 w-5 transition-transform group-hover:scale-95" aria-hidden="true" />
+        <QrCode className="h-5 w-5 transition-transform group-hover:scale-95" aria-hidden="true" />
       </a>
 
       <div className="mt-2 flex w-full flex-col gap-1 pr-14">

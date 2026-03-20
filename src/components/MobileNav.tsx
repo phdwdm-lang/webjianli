@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 import { Home, User, Rocket, Clock, Pen, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { NAV_STYLES } from "@/constants/theme";
-import { useRouteTransitionNavigation } from "@/components/common/RouteTransitionShell";
+import {
+  useRouteTransitionNavigation,
+  useRouteTransitionState,
+} from "@/components/common/RouteTransitionShell";
 
 interface NavItem {
   icon: React.ElementType;
@@ -53,10 +56,13 @@ function MobileNavComponent() {
   const { resolvedTheme, setTheme } = useTheme();
   const { activePathname, navigateWithTransition, prefetchRoute } =
     useRouteTransitionNavigation();
+  const { isRouteTransitioning } = useRouteTransitionState();
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = () => {
-    setTheme(isDark ? "light" : "dark");
+    if (!isRouteTransitioning) {
+      setTheme(isDark ? "light" : "dark");
+    }
   };
 
   return (
@@ -67,7 +73,6 @@ function MobileNavComponent() {
         backgroundColor: NAV_STYLES.glassBackground,
         borderColor: NAV_STYLES.glassBorder,
         boxShadow: NAV_STYLES.shadow,
-        viewTransitionName: "mobile-nav",
       }}
     >
       {NAV_ITEMS.map((item) => {
@@ -101,6 +106,7 @@ function MobileNavComponent() {
             type="button"
             aria-label={item.label}
             aria-current={isActive ? "page" : undefined}
+            aria-disabled={isRouteTransitioning ? "true" : undefined}
             onClick={() => navigateWithTransition(item.href!)}
             onTouchStart={() => prefetchRoute(item.href!)}
             onMouseEnter={() => prefetchRoute(item.href!)}

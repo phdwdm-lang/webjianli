@@ -48,8 +48,8 @@ export const ABOUT_COPY = {
   hikerFrontTitle: "十天走七条徒步线的",
   hikerFrontAccent: "产品经理",
   hikerBackTitle: "耐造",
-  resumeLabel: "下载简历",
-  resumeHref: "/彭焕东-18998360787.pdf",
+  resumeLabel: "查看个人二维码",
+  resumeHref: "/个人微信.png",
 } as const;
 
 export const ABOUT_MODULE_ICONS = {
