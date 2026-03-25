@@ -1,7 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { GraduationCap, Building2, Circle, FolderKanban, X } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
+import {
+  GraduationCap,
+  Building2,
+  Circle,
+  FolderKanban,
+  X,
+  ChevronRight,
+  BriefcaseBusiness,
+} from "lucide-react";
 import PageContainer from "@/components/PageContainer";
 import { EDUCATION, WORK_EXPERIENCE } from "@/constants/profile";
 import { CSS_VARS } from "@/constants/theme";
@@ -28,19 +37,45 @@ type TimelineItem = {
 const NUMBER_HIGHLIGHT_PATTERN =
   /(\d+[\d,]*\+?(?:万|亿)?(?:份|次|个|人|%|项|家|年|月|周|天)?)/g;
 
-const highlightKeyNumbers = (text: string) => {
-  const parts = text.split(NUMBER_HIGHLIGHT_PATTERN);
+const highlightKeyNumbers = (text: string, fontWeight: 600 | 700 = 600) => {
+  const matches = Array.from(text.matchAll(NUMBER_HIGHLIGHT_PATTERN));
 
-  return parts.map((part, index) =>
-    // split 使用捕获组时，匹配内容会出现在奇数索引位置
-    index % 2 === 1 ? (
-      <span key={index} className="text-[var(--section-color)] font-semibold">
-        {part}
+  if (matches.length === 0) {
+    return text;
+  }
+
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+
+  matches.forEach((match, index) => {
+    const value = match[0];
+    const start = match.index ?? 0;
+    const end = start + value.length;
+
+    if (start > lastIndex) {
+      nodes.push(text.slice(lastIndex, start));
+    }
+
+    nodes.push(
+      <span
+        key={`${value}-${index}-${start}`}
+        style={{
+          color: "var(--section-color)",
+          fontWeight,
+        }}
+      >
+        {value}
       </span>
-    ) : (
-      <span key={index}>{part}</span>
-    )
-  );
+    );
+
+    lastIndex = end;
+  });
+
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
+
+  return nodes;
 };
 
 const TIMELINE_ITEMS: TimelineItem[] = [
@@ -68,15 +103,39 @@ const TIMELINE_ITEMS: TimelineItem[] = [
 export default function ExperiencePage() {
   const [activeProject, setActiveProject] = useState<TimelineProject | null>(null);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+  const drawerScrollRef = useRef<HTMLDivElement | null>(null);
+  const openAnimationFrameRef = useRef<number | null>(null);
 
   const openDrawer = (project: TimelineProject) => {
+    if (openAnimationFrameRef.current !== null) {
+      window.cancelAnimationFrame(openAnimationFrameRef.current);
+      openAnimationFrameRef.current = null;
+    }
+
     setActiveProject(project);
-    setIsDrawerVisible(true);
+    setIsDrawerVisible(false);
+
+    // 先挂载，再在下一帧触发可见状态，保证 CSS transition 能真正生效
+    openAnimationFrameRef.current = window.requestAnimationFrame(() => {
+      setIsDrawerVisible(true);
+      openAnimationFrameRef.current = null;
+    });
   };
 
   const closeDrawer = () => {
     setIsDrawerVisible(false);
   };
+
+  useEffect(() => {
+    setHasMounted(true);
+
+    return () => {
+      if (openAnimationFrameRef.current !== null) {
+        window.cancelAnimationFrame(openAnimationFrameRef.current);
+      }
+    };
+  }, []);
 
   // ESC 关闭 + 打开时禁止背景滚动
   useEffect(() => {
@@ -111,26 +170,51 @@ export default function ExperiencePage() {
     };
   }, [isDrawerVisible, activeProject]);
 
+  // 每次打开新项目时将抽屉内容滚动重置到顶部，避免复用上一次滚动位置
+  useEffect(() => {
+    if (!activeProject) return;
+    drawerScrollRef.current?.scrollTo(0, 0);
+  }, [activeProject]);
+
   return (
-    <PageContainer
-      title="学习与工作"
-      subtitle="教育背景与工作经历时间线"
-      themeColor={CSS_VARS.themeJourney}
-      hideHeader
-    >
+      <PageContainer
+        title="个人经历"
+        subtitle="教育与工作背景"
+        themeColor={CSS_VARS.themeJourney}
+        hideHeader
+        contentClassName="mx-auto w-full max-w-[1180px] px-5 py-14 pb-24 md:px-7 md:py-16 md:pb-12 xl:px-8"
+      >
       <div className="relative py-4">
-        <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            学习与工作
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-[26%] top-[10%] h-[58rem] w-[58rem] rounded-full opacity-90 blur-[100px]"
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--section-color) 18%, transparent) 0%, color-mix(in oklab, var(--section-color) 10%, transparent) 32%, transparent 70%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[-8%] bottom-[6%] h-40 w-40 rounded-full blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--section-color) 10%, transparent) 0%, transparent 72%)",
+          }}
+        />
+
+        <header className="mb-16 text-center md:mb-[4.75rem]">
+          <h1 className="text-4xl font-black tracking-tight text-[var(--foreground)] md:text-5xl">
+            个人经历
           </h1>
-          <p className="mt-2 text-[var(--muted)] text-base">
-            教育背景与工作经历时间线
+          <p className="mt-3 text-base text-[var(--muted)] md:text-lg">
+            教育与工作背景
           </p>
+          <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-[var(--section-color)] opacity-80" />
         </header>
 
         {/* Timeline Line — desktop & mobile positions will be refined in later phases */}
         <div
-          className="absolute left-[24px] md:left-[190px] top-0 bottom-0 w-px"
+          className="absolute left-[24px] md:left-[232px] top-[8rem] bottom-0 w-px"
           style={{
             background:
               "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--section-color) 60%, var(--timeline-line)) 10%, color-mix(in oklab, var(--section-color) 60%, var(--timeline-line)) 90%, transparent 100%)",
@@ -138,68 +222,75 @@ export default function ExperiencePage() {
           }}
         />
 
-        <div className="space-y-10">
+        <div className="space-y-14">
           {TIMELINE_ITEMS.map((item, index) => (
-            <div key={index} className="relative pl-[64px] md:pl-[270px] group py-4">
+            <div key={index} className="relative pl-[64px] md:pl-[340px] group py-4">
               {/* Desktop Date */}
-              <div className="hidden md:flex absolute left-0 top-[2.75rem] -translate-y-1/2 w-[190px] pr-6 justify-end group-hover:-translate-x-1 transition-transform duration-300">
-                <span className="text-[var(--muted)] font-mono text-sm font-semibold tracking-wide">
+              <div className="hidden md:flex absolute left-0 top-[2.75rem] -translate-y-1/2 w-[232px] pr-9 justify-end group-hover:-translate-x-1 transition-transform duration-300">
+                <span className="text-[var(--muted)] font-ui text-[1rem] font-semibold tracking-[0.055em]">
                   {item.period}
                 </span>
               </div>
 
               {/* Timeline Dot */}
-              <div className="absolute left-[24px] md:left-[190px] top-[2.75rem] -translate-x-1/2 -translate-y-1/2 z-10">
+              <div className="absolute left-[24px] md:left-[232px] top-[2.75rem] -translate-x-1/2 -translate-y-1/2 z-10">
                 <div className="dot-glow w-10 h-10 md:w-12 md:h-12 rounded-full bg-[var(--card-bg)] border-2 border-[var(--section-color)] flex items-center justify-center">
                   {item.type === "education" ? (
                     <GraduationCap
-                      size={18}
+                      size={17}
                       className="text-[var(--section-color)]"
                     />
                   ) : (
-                    <Building2 size={18} className="text-[var(--section-color)]" />
+                    <Building2 size={17} className="text-[var(--section-color)]" />
                   )}
                 </div>
               </div>
 
               {/* Mobile Date */}
-              <div className="md:hidden text-[var(--section-color)] font-mono text-xs font-bold mb-2">
+              <div className="md:hidden text-[var(--section-color)] font-ui text-sm font-bold mb-3">
                 {item.period}
               </div>
 
               {/* Content Card */}
-              <div className="glass-card rounded-2xl p-6 transition-all hover:border-[var(--section-color)]">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+              <div className="glass-card rounded-[1.7rem] px-6 py-5 md:px-7 md:py-6 transition-all hover:border-[var(--section-color)]">
+                <div className="flex flex-col gap-3 mb-4 md:flex-row md:items-start md:justify-between">
                   <div>
-                    <h3 className="text-base font-semibold">{item.title}</h3>
-                    <p className="text-sm text-[var(--section-color)] font-medium">
-                      {item.subtitle}
-                    </p>
+                    <h3 className="text-[1.55rem] font-bold tracking-tight text-[var(--foreground)] md:text-[1.72rem]">
+                      {item.title}
+                    </h3>
                   </div>
-                  {/* 桌面端不再显示时间胶囊，避免与左侧时间重复 */}
-                  <span
-                    className="md:hidden text-xs text-[var(--muted)] px-3 py-1 rounded-full whitespace-nowrap self-start"
-                    style={{
-                      backgroundColor:
-                        "color-mix(in oklab, var(--section-color) 10%, var(--tag-bg))",
-                    }}
-                  >
-                    {item.period}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span
+                      className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[0.84rem] font-medium text-[var(--section-color)] border"
+                      style={{
+                        backgroundColor:
+                          "color-mix(in oklab, var(--section-color) 8%, var(--card-bg))",
+                        borderColor:
+                          "color-mix(in oklab, var(--section-color) 18%, var(--card-border))",
+                      }}
+                    >
+                      {item.type === "education" ? (
+                        <GraduationCap size={14} />
+                      ) : (
+                        <BriefcaseBusiness size={14} />
+                      )}
+                      <span>{item.subtitle}</span>
+                    </span>
+                  </div>
                 </div>
 
                 {item.description && (
-                  <p className="text-sm text-[var(--muted)] mb-4 leading-relaxed">
+                  <p className="text-[0.92rem] text-[var(--muted)] mb-4.5 leading-[1.62]">
                     {highlightKeyNumbers(item.description)}
                   </p>
                 )}
 
                 {item.highlights && item.highlights.length > 0 && (
-                  <ul className="space-y-2 mb-4">
+                  <ul className="space-y-2 mb-4.5">
                     {item.highlights.map((highlight, hIndex) => (
                       <li
                         key={hIndex}
-                        className="flex items-start gap-2 text-sm text-[var(--foreground)] leading-relaxed"
+                        className="flex items-start gap-2.5 text-[0.89rem] text-[var(--foreground)] leading-[1.55]"
                       >
                         <Circle
                           size={5}
@@ -212,26 +303,30 @@ export default function ExperiencePage() {
                 )}
 
                 {item.type === "work" && item.projects && item.projects.length > 0 && (
-                  <div className="border-t border-[var(--card-border)] pt-4 mt-3">
-                    <div className="flex items-center gap-2 text-sm font-medium text-[var(--section-color)] mb-3">
-                      <FolderKanban size={16} />
-                      <span>代表项目</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                       {item.projects.map((project) => (
                         <button
                           key={project.name}
                           type="button"
-                          className="group/project inline-flex items-center gap-2 rounded-xl border border-[var(--card-border)] bg-[var(--tag-bg)] px-3 py-1.5 text-xs sm:text-sm text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--section-color)] hover:bg-[color-mix(in_oklab,var(--card-bg)_80%,var(--section-color)_20%)] transition-colors"
+                          className="group/project inline-flex items-center gap-2.5 rounded-[1rem] border px-3.5 py-2 text-[0.85rem] text-[var(--muted)] transition-all duration-300 hover:text-[var(--foreground)]"
+                          style={{
+                            backgroundColor:
+                              "color-mix(in oklab, var(--card-bg) 92%, var(--section-color) 8%)",
+                            borderColor:
+                              "color-mix(in oklab, var(--section-color) 12%, var(--card-border))",
+                          }}
                           onClick={() => openDrawer(project)}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[color-mix(in_oklab,var(--section-color)_40%,transparent)] group-hover/project:bg-[var(--section-color)]" />
-                          <span className="truncate max-w-[12rem] sm:max-w-[16rem]">
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[color-mix(in_oklab,var(--section-color)_40%,transparent)] group-hover/project:bg-[var(--section-color)] transition-colors" />
+                          <span className="truncate max-w-[12rem] sm:max-w-[15rem]">
                             {project.name}
                           </span>
+                          <ChevronRight
+                            size={14}
+                            className="shrink-0 text-[var(--muted)] group-hover/project:translate-x-0.5 group-hover/project:text-[var(--section-color)] transition-all"
+                          />
                         </button>
                       ))}
-                    </div>
                   </div>
                 )}
               </div>
@@ -240,89 +335,99 @@ export default function ExperiencePage() {
         </div>
 
         {/* Project Drawer */}
-        {activeProject && (
-          <>
-            {/* Backdrop */}
-            <div
-              className={`fixed inset-0 z-30 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
-                isDrawerVisible ? "opacity-100" : "opacity-0"
-              }`}
-              onClick={closeDrawer}
-            />
-            {/* Drawer Panel */}
-            <aside
-              className={`fixed inset-y-0 right-0 z-40 w-full max-w-md bg-[var(--card-bg)] border-l border-[var(--card-border)] shadow-xl flex flex-col transform transition-transform duration-300 ease-out ${
-                isDrawerVisible ? "translate-x-0" : "translate-x-full"
-              }`}
-            >
-              <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--card-border)]">
-                <div className="flex items-center gap-2">
-                  <FolderKanban size={18} className="text-[var(--section-color)]" />
-                  <span className="text-xs font-medium tracking-wide text-[var(--muted)]">
-                    项目详情
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-[var(--tag-bg)] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
-                  onClick={closeDrawer}
-                >
-                  <X size={16} />
-                </button>
-              </header>
-
-              <div className="flex-1 overflow-y-auto px-5 py-5 space-y-4">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-base font-semibold text-[var(--foreground)]">
-                      {activeProject.name}
-                    </h3>
-                    <p className="mt-1 text-xs font-medium text-[var(--section-color)]">
-                      {activeProject.role}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2 text-xs">
-                    <span
-                      className="px-3 py-1 rounded-full text-[var(--muted)]"
-                      style={{
-                        backgroundColor:
-                          "color-mix(in oklab, var(--section-color) 10%, var(--tag-bg))",
-                      }}
-                    >
-                      {activeProject.period}
+        {hasMounted &&
+          activeProject &&
+          createPortal(
+            <>
+              {/* Backdrop */}
+              <div
+                className={`fixed inset-0 z-[70] bg-black/16 backdrop-blur-[5px] transition-all duration-650 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isDrawerVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+                onClick={closeDrawer}
+              />
+              {/* Drawer Panel */}
+              <aside
+                className={`fixed inset-y-0 right-0 z-[80] w-full max-w-[34rem] bg-[var(--card-bg)] border-l border-[var(--card-border)] shadow-[0_20px_60px_-20px_rgba(15,23,42,0.28)] flex flex-col will-change-transform transition-all duration-650 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isDrawerVisible
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-[12%] opacity-0 pointer-events-none"
+                }`}
+              >
+                <header className="flex items-center justify-between px-5 py-4 border-b border-[var(--card-border)]">
+                  <div className="flex items-center gap-2">
+                    <FolderKanban size={18} className="text-[var(--section-color)]" />
+                    <span className="text-xs font-medium tracking-wide text-[var(--muted)]">
+                      项目详情
                     </span>
                   </div>
-                </div>
+                  <button
+                    type="button"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-[var(--tag-bg)] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                    onClick={closeDrawer}
+                  >
+                    <X size={16} />
+                  </button>
+                </header>
 
-                <p className="text-sm leading-relaxed text-[var(--muted)]">
-                  {highlightKeyNumbers(activeProject.description)}
-                </p>
-
-                {activeProject.highlights.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-xs font-medium text-[var(--muted)]">
-                      核心贡献
-                    </p>
-                    <ul className="space-y-2">
-                      {activeProject.highlights.map((highlight, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-2 text-sm text-[var(--foreground)] leading-relaxed"
-                        >
-                          <Circle
-                            size={5}
-                            className="mt-2 shrink-0 fill-[var(--section-color)] text-[var(--section-color)]"
-                          />
-                          <span>{highlightKeyNumbers(highlight)}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div
+                  ref={drawerScrollRef}
+                  className="flex-1 overflow-y-auto px-6 py-6 space-y-5"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-[1.35rem] font-semibold text-[var(--foreground)]">
+                        {activeProject.name}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-[var(--section-color)]">
+                        {activeProject.role}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span
+                        className="px-3 py-1 rounded-full text-[var(--muted)]"
+                        style={{
+                          backgroundColor:
+                            "color-mix(in oklab, var(--section-color) 10%, var(--tag-bg))",
+                        }}
+                      >
+                        {activeProject.period}
+                      </span>
+                    </div>
                   </div>
-                )}
-              </div>
-            </aside>
-          </>
-        )}
+
+                  <p className="text-[0.98rem] leading-[1.7] text-[var(--muted)]">
+                    {highlightKeyNumbers(activeProject.description, 700)}
+                  </p>
+
+                  {activeProject.highlights.length > 0 && (
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-[var(--muted)]">
+                        核心贡献
+                      </p>
+                      <ul className="space-y-2.5">
+                        {activeProject.highlights.map((highlight, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-2.5 text-[0.95rem] text-[var(--foreground)] leading-[1.65]"
+                          >
+                            <Circle
+                              size={5}
+                              className="mt-2 shrink-0 fill-[var(--section-color)] text-[var(--section-color)]"
+                            />
+                            <span>
+                              {highlightKeyNumbers(highlight, 700)}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </aside>
+            </>,
+            document.body
+          )}
       </div>
     </PageContainer>
   );
