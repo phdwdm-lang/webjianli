@@ -1,0 +1,75 @@
+<style>
+  :root { --ink:#172033; --muted:#657086; --line:#dfe5ed; --paper:#f8fafc; --blue:#3b28cc; --teal:#0f8f84; --amber:#c47b08; }
+  * { box-sizing: border-box; }
+  .question { max-width:1180px; margin:0 auto 24px; }
+  .question h2 { color:var(--ink); margin-bottom:8px; }
+  .question p { color:var(--muted); max-width:780px; }
+  .options-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; max-width:1180px; margin:0 auto; }
+  .case-option { cursor:pointer; border:1px solid var(--line); border-radius:12px; background:#fff; padding:0; overflow:hidden; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+  .case-option:hover { transform:translateY(-4px); border-color:var(--blue); box-shadow:0 12px 24px rgba(23,32,51,.1); }
+  .case-option:active { transform:translateY(-1px); }
+  .option-head { display:flex; gap:10px; align-items:center; padding:15px 16px 12px; }
+  .option-letter { width:26px; height:26px; display:grid; place-items:center; border-radius:50%; color:#fff; font:700 13px/1 system-ui; background:var(--blue); }
+  .option-head h3 { margin:0; color:var(--ink); font-size:16px; }
+  .mock { margin:0 14px; min-height:360px; border:1px solid var(--line); border-radius:8px; background:var(--paper); padding:12px; overflow:hidden; }
+  .mock-bar { display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:9px; color:var(--muted); font:700 9px/1.2 ui-monospace,monospace; letter-spacing:.08em; }
+  .project-shell { margin-top:12px; border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; }
+  .project-top { display:grid; grid-template-columns:36% 64%; min-height:184px; }
+  .cover { background:#dcd8ff; position:relative; }
+  .cover::after { content:'health platform'; position:absolute; left:12px; bottom:10px; color:#3b28cc; font:700 10px/1 ui-monospace,monospace; }
+  .project-info { padding:14px; }
+  .eyebrow { color:var(--blue); font:700 8px/1.2 ui-monospace,monospace; letter-spacing:.08em; }
+  .project-info h4 { margin:8px 0 5px; color:var(--ink); font:800 18px/1.1 Georgia,serif; }
+  .project-info p { margin:0; color:var(--muted); font-size:9px; line-height:1.55; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:11px; padding:9px 0; }
+  .stat { padding:0 7px; border-right:1px solid var(--line); }
+  .stat:last-child { border-right:0; }
+  .stat strong { display:block; color:var(--blue); font-size:12px; }
+  .stat span { display:block; color:var(--muted); font-size:7px; margin-top:3px; }
+  .copy-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:12px; }
+  .copy-block { border-left:2px solid var(--teal); padding-left:8px; }
+  .copy-block h5 { margin:0 0 4px; color:var(--ink); font-size:9px; }
+  .copy-block p { margin:0; color:var(--muted); font-size:8px; line-height:1.55; }
+  .section-nav { display:flex; gap:6px; flex-wrap:wrap; padding:10px 12px 0; }
+  .section-nav span { border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:8px; padding:4px 7px; }
+  .wide-section { margin:10px 12px 12px; border-top:1px solid var(--line); padding-top:10px; }
+  .wide-section h5 { margin:0 0 7px; color:var(--ink); font-size:10px; }
+  .wide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+  .screen { height:58px; border:1px solid var(--line); border-radius:5px; background:#e8f5f2; display:grid; place-items:center; color:var(--teal); font:700 8px/1.3 ui-monospace,monospace; text-align:center; }
+  .option-copy { padding:14px 16px 17px; }
+  .option-copy p { color:var(--muted); font-size:12px; line-height:1.55; margin:0; }
+  .option-copy .recommend { color:var(--blue); font-size:10px; font-weight:800; margin-top:8px; }
+  @media (max-width:850px) { .options-grid { grid-template-columns:1fr; } .mock { min-height:320px; } }
+</style>
+
+<div class="question">
+  <h2>A 方案：详细内容放在同一页，信息密度怎么控制？</h2>
+  <p>两种方案都保留现有项目列表入口和卡片视觉。区别在于：A1 把每个项目做成完整长卡片；A2 让第一屏先完成识别和比较，再在同页下方展开案例叙事。</p>
+</div>
+
+<div class="options-grid">
+  <div class="case-option" data-choice="a1" onclick="toggleSelect(this)">
+    <div class="option-head"><span class="option-letter">A1</span><h3>纵向完整项目卡</h3></div>
+    <div class="mock">
+      <div class="mock-bar"><span>PROJECTS</span><span>FULL CARD</span></div>
+      <div class="project-shell">
+        <div class="project-top"><div class="cover"></div><div class="project-info"><span class="eyebrow">2026.03 - PRESENT · INDEPENDENT PRODUCT</span><h4>智能饮食管理平台</h4><p>从模糊业务方向开始，完成需求转化、双端设计、AI 能力接入与可交付版本建设。</p><div class="stats"><div class="stat"><strong>双端</strong><span>产品形态</span></div><div class="stat"><strong>12+</strong><span>PRD 分册</span></div><div class="stat"><strong>AI</strong><span>餐食识别</span></div><div class="stat"><strong>复购</strong><span>交付结果</span></div></div></div></div>
+        <div class="copy-row"><div class="copy-block"><h5>我的职责</h5><p>需求、产品、体验、开发协作、验收与范围管理一人负责。</p></div><div class="copy-block"><h5>关键决策</h5><p>把订单、支付、退款等共享规则从模块文档中抽离治理。</p></div></div>
+      </div>
+    </div>
+    <div class="option-copy"><p>每个项目都完整讲完，阅读连续；但项目之间的比较成本高，长卡片会把列表页变成三篇长文。</p></div>
+  </div>
+
+  <div class="case-option" data-choice="a2" onclick="toggleSelect(this)">
+    <div class="option-head"><span class="option-letter">A2</span><h3>摘要 + 同页案例段落</h3></div>
+    <div class="mock">
+      <div class="mock-bar"><span>PROJECTS</span><span>SCAN → READ</span></div>
+      <div class="project-shell">
+        <div class="project-top"><div class="cover"></div><div class="project-info"><span class="eyebrow">01 · BUSINESS DELIVERY</span><h4>智能饮食管理平台</h4><p>先用一张卡片回答：做什么、负责什么、结果如何。</p><div class="stats"><div class="stat"><strong>双端</strong><span>形态</span></div><div class="stat"><strong>12+</strong><span>PRD</span></div><div class="stat"><strong>AI</strong><span>能力</span></div><div class="stat"><strong>复购</strong><span>结果</span></div></div></div></div>
+        <div class="section-nav"><span>项目背景</span><span>产品方案</span><span>技术分层</span><span>交付复盘</span></div>
+        <div class="wide-section"><h5>项目方案 · 以问题组织内容</h5><div class="wide-grid"><div class="screen">需求<br/>从哪里开始</div><div class="screen">用户端<br/>如何闭环</div><div class="screen">后台端<br/>如何协同</div></div></div>
+      </div>
+    </div>
+    <div class="option-copy"><p>顶部仍能快速扫描，下面按“背景 → 方案 → 技术 → 交付”深入；页面会变长，但阅读节奏和求职叙事更清楚。</p><p class="recommend">更适合你选择的“详细案例”，也是我建议落地的 A 版本。</p></div>
+  </div>
+</div>

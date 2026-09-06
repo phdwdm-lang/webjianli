@@ -1,0 +1,181 @@
+<style>
+  .skill-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .skill-option {
+    min-width: 0;
+  }
+  .skill-option .mockup {
+    height: 430px;
+    padding: 0;
+    overflow: hidden;
+    background: #f5f5f2;
+  }
+  .option-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .option-label strong {
+    color: #161616;
+    font-size: 18px;
+  }
+  .option-label span {
+    color: #777;
+    font-size: 13px;
+  }
+  .skill-card {
+    height: 100%;
+    padding: 24px;
+    color: #181818;
+    font-family: system-ui, sans-serif;
+  }
+  .skill-card h3 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+  .skill-card p {
+    margin: 8px 0 0;
+    color: #676767;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .skill-meta {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .skill-meta span {
+    border: 1px solid #deded8;
+    border-radius: 999px;
+    padding: 5px 9px;
+    color: #666;
+    font-size: 11px;
+  }
+  .skill-list {
+    margin-top: 22px;
+    display: grid;
+    gap: 10px;
+  }
+  .skill-list div {
+    border-left: 3px solid #ffb800;
+    padding: 10px 12px;
+    background: #fff;
+    color: #3f3f3f;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .image-sheet {
+    position: relative;
+    height: 100%;
+    padding: 28px;
+    overflow: hidden;
+    background: #101010;
+    color: #fff;
+  }
+  .image-sheet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #3212a8 0%, #101010 48%, #ffb800 180%);
+    opacity: 0.9;
+  }
+  .image-sheet > * {
+    position: relative;
+  }
+  .image-sheet .eyebrow {
+    color: #ffcf59;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .image-sheet h3 {
+    max-width: 390px;
+    margin-top: 62px;
+    color: #fff;
+    font-size: 34px;
+    line-height: 1.08;
+  }
+  .image-sheet .diagram {
+    position: absolute;
+    right: 28px;
+    bottom: 42px;
+    left: 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .image-sheet .diagram span {
+    display: grid;
+    min-height: 72px;
+    place-items: end start;
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 10px;
+    padding: 9px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    font-size: 10px;
+  }
+  .image-sheet .diagram span:nth-child(2) { transform: translateY(-14px); }
+  .image-sheet .diagram span:nth-child(3) { transform: translateY(-28px); }
+  .image-sheet .diagram span:nth-child(4) { transform: translateY(-42px); border-color: #ffb800; color: #ffcf59; }
+  .note {
+    margin-top: 16px;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  @media (max-width: 760px) {
+    .skill-options { grid-template-columns: 1fr; }
+    .skill-option .mockup { height: 360px; }
+    .image-sheet h3 { margin-top: 42px; font-size: 29px; }
+  }
+</style>
+
+<h2>Skill 内容改成图片：你更接近哪一种？</h2>
+<p class="subtitle">当前项目的 Skill 数据有 2 条：小红书视频转知乎图文、cap-edit。下面只比较信息承载方式，不代表最终视觉稿。</p>
+
+<div class="skill-options">
+  <div class="skill-option">
+    <div class="option-label"><strong>A · 图片为主</strong><span>保留最低限度识别信息</span></div>
+    <div class="mockup">
+      <div class="skill-card">
+        <h3>小红书视频转知乎图文</h3>
+        <p>跨平台内容复用 Skill</p>
+        <div class="skill-meta"><span>阿里云百炼</span><span>ASR</span><span>多模态大模型</span><span>Python</span></div>
+        <div class="skill-list">
+          <div>视频转写 → 多模态理解 → 结构化分析稿</div>
+          <div>关键帧配图 + 个人表达风格改写</div>
+          <div>导出可直接导入知乎编辑器的 .docx</div>
+        </div>
+      </div>
+    </div>
+    <p class="note">图片可以承担流程图、作品截图或视觉海报；标题和定位仍是 HTML 文字，招聘者能快速识别这是哪个 Skill。</p>
+  </div>
+
+  <div class="skill-option">
+    <div class="option-label"><strong>B · 整图承载</strong><span>一张图替换全部文字内容</span></div>
+    <div class="mockup">
+      <div class="image-sheet">
+        <div class="eyebrow">Skill / 01</div>
+        <h3>小红书视频<br>转知乎图文</h3>
+        <div class="diagram">
+          <span>ASR</span><span>理解</span><span>改写</span><span>.docx</span>
+        </div>
+      </div>
+    </div>
+    <p class="note">页面结构最干净，也最依赖图片本身的可读性、移动端清晰度和替代文本；两条 Skill 需要各自准备一张图。</p>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 28px">
+  <h3>当前需要先确定的唯一选择</h3>
+  <p>如果你选 A，我会保留 Skill 名称/定位，把描述、亮点和技术标签压缩为一张主视觉；如果你选 B，Skill 卡片将只展示图片和必要的链接动作，图片需要承担全部内容。</p>
+</div>

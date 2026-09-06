@@ -1,0 +1,86 @@
+<style>
+  :root {
+    --ink: #172033;
+    --muted: #657086;
+    --line: #dfe5ed;
+    --paper: #f8fafc;
+    --blue: #3b28cc;
+    --teal: #0f8f84;
+    --amber: #c47b08;
+  }
+  * { box-sizing: border-box; }
+  .question { max-width: 1180px; margin: 0 auto 24px; }
+  .question h2 { color: var(--ink); margin-bottom: 8px; }
+  .question p { color: var(--muted); max-width: 760px; }
+  .options-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 1180px; margin: 0 auto; }
+  .case-option { cursor: pointer; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 0; overflow: hidden; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  .case-option:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 12px 24px rgba(23,32,51,.1); }
+  .case-option:active { transform: translateY(-1px); }
+  .option-head { display: flex; gap: 10px; align-items: center; padding: 15px 16px 12px; }
+  .option-letter { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; color: #fff; font: 700 13px/1 system-ui; background: var(--blue); }
+  .option-head h3 { margin: 0; color: var(--ink); font-size: 16px; }
+  .mock { margin: 0 14px; min-height: 245px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); padding: 12px; overflow: hidden; }
+  .mock-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 9px; color: var(--muted); font: 700 9px/1.2 ui-monospace, monospace; letter-spacing: .08em; }
+  .mock-title { margin: 15px 0 10px; color: var(--ink); font: 800 18px/1.1 Georgia, serif; }
+  .mock-copy { margin: 0 0 12px; color: var(--muted); font-size: 9px; line-height: 1.55; }
+  .mini-card { border: 1px solid var(--line); border-radius: 7px; background: #fff; padding: 9px; margin-top: 8px; }
+  .mini-card strong { color: var(--ink); display: block; font-size: 10px; }
+  .mini-card span { color: var(--muted); display: block; font-size: 8px; line-height: 1.5; margin-top: 4px; }
+  .mini-cover { height: 54px; border-radius: 5px; background: #ddd8ff; margin-bottom: 8px; position: relative; overflow: hidden; }
+  .mini-cover::after { content: "health platform"; position: absolute; left: 9px; bottom: 7px; color: #3b28cc; font: 700 9px/1 ui-monospace, monospace; }
+  .mini-sidebar { display: grid; grid-template-columns: 48px 1fr; gap: 9px; height: 190px; }
+  .mini-nav { border-right: 1px solid var(--line); color: var(--muted); font: 700 8px/2 ui-monospace, monospace; }
+  .mini-main { min-width: 0; }
+  .mini-main .mini-cover { height: 36px; }
+  .mini-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 7px; }
+  .mini-chip { height: 34px; border-radius: 5px; background: #e7f5f2; border: 1px solid #c7ebe6; }
+  .mini-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; align-items: center; margin-top: 16px; }
+  .mini-step { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 9px 5px; text-align: center; color: var(--ink); font-size: 8px; }
+  .mini-arrow { color: var(--amber); font-weight: 800; text-align: center; }
+  .option-copy { padding: 14px 16px 17px; }
+  .option-copy p { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 0; }
+  .option-copy .recommend { color: var(--blue); font-size: 10px; font-weight: 800; margin-top: 8px; }
+  @media (max-width: 850px) { .options-grid { grid-template-columns: 1fr; } .mock { min-height: 190px; } }
+</style>
+
+<div class="question">
+  <h2>智能饮食管理平台，怎样进入作品集？</h2>
+  <p>你已选择详细案例。请比较信息架构：项目列表需要承担多少信息，详细案例是否独立成页，以及首页要不要提前突出这个项目。</p>
+</div>
+
+<div class="options-grid">
+  <div class="case-option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="option-head"><span class="option-letter">A</span><h3>扩展项目列表</h3></div>
+    <div class="mock">
+      <div class="mock-bar"><span>PROJECTS</span><span>01 / 03</span></div>
+      <div class="mock-title">项目经历</div>
+      <p class="mock-copy">三张完整项目卡片，新增案例直接排在最前。</p>
+      <div class="mini-card"><strong>智能饮食管理平台</strong><span>产品设计 · AI 应用 · 微信小程序</span><span>需求转化 / 双端流程 / 资金链路 / 发布治理</span></div>
+      <div class="mini-card"><strong>猹杀 Wolfcha</strong><span>AI 狼人杀游戏 · 2 人团队</span></div>
+    </div>
+    <div class="option-copy"><p>改动最小，上手最快；但详细内容会让项目列表变长，重点项目之间的层级不够清楚。</p></div>
+  </div>
+
+  <div class="case-option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="option-head"><span class="option-letter">B</span><h3>列表 + 独立案例页</h3></div>
+    <div class="mock">
+      <div class="mock-bar"><span>PROJECTS</span><span>CASE STUDY</span></div>
+      <div class="mock-title">智能饮食管理平台</div>
+      <p class="mock-copy">项目卡片只负责识别和进入；详情页按问题、方案、实现、验证组织。</p>
+      <div class="mini-flow"><div class="mini-step">需求<br/>范围</div><div class="mini-arrow">→</div><div class="mini-step">双端<br/>流程</div><div class="mini-arrow">→</div><div class="mini-step">交付<br/>验证</div></div>
+      <div class="mini-card"><strong>页面截图 / 流程图 / 技术分层</strong><span>所有敏感信息脱敏，只呈现可复用的产品判断。</span></div>
+    </div>
+    <div class="option-copy"><p>最适合详细案例：列表保持可扫描，案例页可以完整展示你的产品判断与 AI 协作方法。</p><p class="recommend">推荐：内容边界清楚，后续也容易维护。</p></div>
+  </div>
+
+  <div class="case-option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="option-head"><span class="option-letter">C</span><h3>首页突出案例</h3></div>
+    <div class="mock">
+      <div class="mock-bar"><span>PARDON</span><span>FEATURED</span></div>
+      <div class="mock-title">AI 产品经理</div>
+      <p class="mock-copy">首页 Bento 增加一个“商业交付”入口，与个人介绍并列成为首屏信号。</p>
+      <div class="mini-sidebar"><div class="mini-nav">HOME<br/>ABOUT<br/>WORK<br/>CASE</div><div class="mini-main"><div class="mini-cover"></div><div class="mini-row"><div class="mini-chip"></div><div class="mini-chip"></div><div class="mini-chip"></div></div><div class="mini-card"><strong>从模糊需求到可交付产品</strong><span>独立承接一套真实业务平台，覆盖需求、设计、开发、测试与发布。</span></div></div></div>
+    </div>
+    <div class="option-copy"><p>求职导向最强，第一屏就突出商业交付；代价是首页会从个人空间转向作品集首页，需调整现有 Bento 平衡。</p></div>
+  </div>
+</div>

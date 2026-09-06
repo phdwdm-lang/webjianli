@@ -7,7 +7,7 @@ export const PROFILE = {
   github: "phdwdm-lang",
   wechat: "18998360787",
   summary:
-    "具备从0到1的AI产品全流程经验，独立/协作完成2款AI产品并上线运营（累计3,700+用户、5,800+场AI交互）。1.5年中国移动用户研究经验，主导2,200万+用户产品的调研项目，擅长将用户洞察转化为产品决策。",
+    "具备从0到1的AI产品全流程经验：独立承接并交付商业AI平台（产品+设计+开发全包，含微信支付完整资金链路，获客户复购）；协作/独立完成2款AI产品并上线运营（累计10,800+用户、19,200+场AI交互），另独立开发UI收集工具并公开发布。1.5年中国移动用户研究经验，主导2,200万+用户产品的调研项目，擅长将用户洞察转化为产品决策。",
   skills: [
     "产品设计",
     "用户研究",
@@ -101,7 +101,7 @@ export const WORK_EXPERIENCE = [
   },
   {
     company: "嘉预网络科技有限公司",
-    role: "联合创始人 / 产品经理",
+    role: "产品经理",
     period: "2020.10 - 2021.12",
     description:
       "作为公司创始成员之一，负责15人开发团队的协作与多个项目从立项到交付的全过程，兼顾商务对接、产品设计、项目管理与测试验收等职责；在职期间参与并主导18个项目落地，输出近40份项目方案，客户转化率长期保持在25%以上，累计产出近200份测试反馈文档，推动20+项目完成验收交付，为公司带来超30万营收并沉淀多家长期合作客户。",
@@ -125,22 +125,54 @@ export const WORK_EXPERIENCE = [
 
 export const PROJECTS = [
   {
+    name: "咣吃不胖",
+    subtitle: "面向大众用户的 AI 健康饮食管理平台，让每个人吃得明白、让营养师管得高效。",
+    team: "独立交付",
+    logo: "/diet/logo.png",
+    link: "https://chibupang.cc/",
+    period: "2026.03 - 至今",
+    description:
+      "某配餐服务企业委托的内测MVP。客户仅给出模糊方向，由我完成需求转化、产品设计、全栈开发与上线，跑通微信支付完整资金链路，1.0按期交付后客户复购2.0。",
+    stats: [
+      { label: "多端协同", value: "三端" },
+      { label: "拍照分析", value: "AI 识餐" },
+      { label: "偏好分析", value: "健康配餐" },
+      { label: "饮食分析", value: "日级" },
+    ],
+    highlights: [
+      "首个以Vibe Coding方式完全独立交付的商业项目：UI设计、技术选型、测试部署一人完成",
+      "落地AI餐食图片识别与日级饮食分析（阿里云百炼），设计用户端+营养师端双端产品",
+      "跑通微信支付/充值/积分/退款完整资金链路，真实支付测试成功到账",
+      "已完成小范围运营测试并收集用户反馈，持续迭代中",
+    ],
+    techStack: [
+      "Next.js 16",
+      "React 19",
+      "tRPC",
+      "MySQL",
+      "微信小程序",
+      "阿里云百炼",
+    ],
+    role: "产品设计 + 交互设计 + 全栈开发 + 测试上线（一人全包）",
+  },
+  {
     name: "猹杀 Wolfcha",
-    subtitle: "AI 狼人杀游戏",
+    subtitle: "一款由大模型实时扮演全部对局者的 AI 狼人杀，让你不再受人数限制随时开局",
     team: "2人团队",
+    logo: "/wolfcha/logo.png",
     period: "2026.01 - 至今",
     link: "https://wolf-cha.com",
     github: "https://github.com/oil-oil/wolfcha",
     description:
       "参加 Watcha+ModelScope 全球AI黑客松（排名第5），设计并上线AI驱动的狼人杀游戏，所有NPC由15+种大模型实时扮演。",
     stats: [
-      { label: "注册用户", value: "3,760+" },
-      { label: "游戏场次", value: "5,810+" },
-      { label: "AI模型", value: "15+" },
+      { label: "注册用户", value: "1万+" },
+      { label: "游戏场次", value: "2万+" },
+      { label: "参与率", value: "66.5%" },
       { label: "赞助商", value: "3家" },
     ],
     highlights: [
-      "上线1个月获3,760注册用户，峰值日增242，平均游戏时长43分钟",
+      "累计注册用户10,843，去重参与玩家7,214（参与率66.5%），平均游戏时长43分钟",
       "主动BD拉取3家AI赞助商（ZenMux/Dashscope/OpenCreator），累计点击1,637次",
       "集成Stripe支付系统，已产生付费收入",
       "负责沉浸式体验设计：AI语音合成、BGM生成、发言自动滚动等交互设计",
@@ -164,9 +196,39 @@ export const PROJECTS = [
     ],
   },
   {
-    name: "BBQ Translator",
-    subtitle: "AI 漫画翻译工具",
+    name: "Muse Folio",
+    subtitle: "一款帮用户采集网页 UI 灵感并一键生成可复用提示词的工具网站",
     team: "独立完成",
+    logo: "/muse/logo.png",
+    period: "2026.08 - 至今",
+    link: "https://muse-folio.com/",
+    description:
+      "把网页或图片中的UI灵感快速捕获到本地画布集中整理，并通过视觉分析生成可以继续修改和复用的提示词，配套Chrome扩展（已上架商店）支持网页区域框选采集。",
+    stats: [
+      { label: "网页框选采集", value: "插件截图" },
+      { label: "Image2 反推", value: "风格库" },
+      { label: "Qwen+DeepSeek", value: "双模型" },
+      { label: "100% 本地存储", value: "本地" },
+    ],
+    highlights: [
+      "Web应用+Chrome扩展双形态：框选捕获→本地画布整理→视觉分析生成可复用设计提示词",
+      "本地U-2-Netp抠图，结合imagen反推提示词库精准识别图片风格，再由Qwen/DeepSeek双模型生成可复用的高准确提示词，100%本地存储保障数据隐私",
+    ],
+    techStack: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Chrome MV3",
+      "U-2-Netp",
+      "IndexedDB",
+    ],
+    role: "产品设计 + 全栈开发（独立完成）",
+  },
+  {
+    name: "BBQ Translator",
+    subtitle: "一款让读者即使不懂外语也能轻松读完的本地 AI 漫画翻译工具",
+    team: "独立完成",
+    logo: "/BBQ-translator/logo.png",
     period: "2026.01 - 2026.02",
     github: "https://github.com/phdwdm-lang/bbq-translator",
     resourceLink:
@@ -221,10 +283,10 @@ export const THOUGHTS = [
     tags: ["职业发展", "AI PM", "用户研究"],
   },
   {
-    title: "猹杀的增长复盘：从0到3760用户",
+    title: "猹杀的增长复盘：从0到10,843用户",
     date: "2026.02",
     summary:
-      "一个AI狼人杀游戏如何在没有预算的情况下获取3760用户？黑客松、社交传播与赞助商合作的故事。",
+      "一个AI狼人杀游戏如何在没有预算的情况下获取10,843用户？黑客松、社交传播与赞助商合作的故事。",
     tags: ["用户增长", "AI", "运营"],
   },
   {

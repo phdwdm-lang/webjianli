@@ -92,8 +92,8 @@ export const ABOUT_CAPABILITIES = [
     icon: Bot,
     backTitle: "核心数据",
     items: [
-      "独立/协作完成2款AI产品上线",
-      "累计3,700+用户，5,800+交互",
+      "独立交付商业AI平台，获客户复购",
+      "2款AI产品上线，累计10,800+用户",
       "AI模型选型与多模型编排经验",
     ],
   },

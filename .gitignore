@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# CDP Chrome profile (keep out of Turbopack watch to avoid LOCK file panic)
+.chrome-cdp
