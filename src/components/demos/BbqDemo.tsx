@@ -14,7 +14,7 @@ export default function BbqDemo() {
         <div className="bq-scene bq-scene-comic">
           <div className="bq-comic-title">日文[Knoe][]哆啦A梦大全集]第03卷[1]</div>
           <div className="bq-comic-img">
-            <img src="/BBQ-translator/comic.png" alt="" className="bq-comic-img-el" />
+            <img src="/BBQ-translator/comic.webp" alt="" className="bq-comic-img-el" />
           </div>
           <div className="bq-comic-badge">未翻译 · 1 页</div>
         </div>
@@ -76,7 +76,7 @@ export default function BbqDemo() {
               <span className="bq-tool">１/１</span>
             </div>
             <div className="bq-editor-canvas">
-              <img src="/BBQ-translator/comic.png" alt="" className="bq-editor-canvas-el" />
+              <img src="/BBQ-translator/comic.webp" alt="" className="bq-editor-canvas-el" />
               <div className="bq-txt bq-txt1"><span className="bq-num">文本框1</span><span className="bq-zh">今晚我要刀 4 号</span></div>
               <div className="bq-txt bq-txt2"><span className="bq-num">文本框2</span><span className="bq-zh">啊咧， 是你……？</span></div>
               <div className="bq-txt bq-txt3"><span className="bq-num">文本框3</span><span className="bq-zh">太好了， 我想起来了</span></div>
@@ -114,7 +114,7 @@ export default function BbqDemo() {
 
         {/* 封面过渡层 */}
         <div className="bq-scene bq-scene-cover">
-          <img src="/BBQ-translator/cover.png" alt="" className="bq-cover-logo" />
+          <img src="/BBQ-translator/cover.webp" alt="" className="bq-cover-logo" />
         </div>
       </div>
 

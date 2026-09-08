@@ -3,20 +3,29 @@
 import { useDemoPlayback } from "./useDemoPlayback";
 
 // 猹杀：左右玩家列表常驻 · 中间昼夜切换发言/行动窗口（代码重绘）
+// 玩家行数据：n=序号、name=昵称、role=角色、img=头像、wolf=是否狼人(可选)
+type Player = {
+  n: string;
+  name: string;
+  role: string;
+  img: string;
+  wolf?: boolean;
+};
+
 const leftPlayers = [
-  { n: "1", name: "你", role: "狼人", img: "user1.png", wolf: true },
-  { n: "2", name: "Sarah", role: "守护", img: "user2.png" },
-  { n: "3", name: "Emily", role: "预言家", img: "user3.png", wolf: true },
-  { n: "4", name: "David", role: "猎人", img: "user4.png" },
+  { n: "1", name: "你", role: "狼人", img: "user1.webp", wolf: true },
+  { n: "2", name: "Sarah", role: "守护", img: "user2.webp" },
+  { n: "3", name: "Emily", role: "预言家", img: "user3.webp", wolf: true },
+  { n: "4", name: "David", role: "猎人", img: "user4.webp" },
 ];
 const rightPlayers = [
-  { n: "5", name: "Jessica", role: "女巫", img: "user5.png", wolf: true },
-  { n: "6", name: "Chris", role: "守卫", img: "user3.png" },
-  { n: "7", name: "Michael", role: "猎手", img: "user2.png" },
-  { n: "8", name: "Robert", role: "村民", img: "user1.png" },
+  { n: "5", name: "Jessica", role: "女巫", img: "user5.webp", wolf: true },
+  { n: "6", name: "Chris", role: "守卫", img: "user3.webp" },
+  { n: "7", name: "Michael", role: "猎手", img: "user2.webp" },
+  { n: "8", name: "Robert", role: "村民", img: "user1.webp" },
 ];
 
-function PlayerRow({ p }) {
+function PlayerRow({ p }: { p: Player }) {
   return (
     <div className={"wf-player" + (p.wolf ? " is-wolf" : "")}>
       <span className="wf-pnum">{p.n}</span>
@@ -41,7 +50,7 @@ export default function WolfchaDemo() {
         <div className="wf-window wf-window-night">
           <div className="wf-tag">🌙 夜晚行动 · 狼人睁眼</div>
           <div className="wf-body">
-            <img className="wf-fig-wolf" src="/wolfcha/char-wolf.png" alt="" />
+            <img className="wf-fig-wolf" src="/wolfcha/char-wolf.webp" alt="" />
             <div className="wf-bubble-zone">
               <div className="wf-bubble">今晚我要刀 <b>4 号</b></div>
               <div className="wf-hint">← 点击玩家头像 · 选择猎杀目标</div>
@@ -52,7 +61,7 @@ export default function WolfchaDemo() {
         <div className="wf-window wf-window-day">
           <div className="wf-tag">☀️ 白天发言 · 预言家报查杀</div>
           <div className="wf-body">
-            <img className="wf-fig-user" src="/wolfcha/user3.png" alt="" />
+            <img className="wf-fig-user" src="/wolfcha/user3.webp" alt="" />
             <div className="wf-bubble-zone">
               <div className="wf-msg wf-msg1"><span className="wf-msg-who">3号 · Emily</span><span className="wf-msg-txt">我昨晚查了 5 号，是好人。</span></div>
               <div className="wf-msg wf-msg2"><span className="wf-msg-who">7号 · Michael</span><span className="wf-msg-txt">同意查杀，今天投 4 号出局？</span></div>

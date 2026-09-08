@@ -44,3 +44,17 @@ next-env.d.ts
 
 # CDP Chrome profile (keep out of Turbopack watch to avoid LOCK file panic)
 .chrome-cdp
+
+# dev / build 日志（本轮排查产物，不入库）
+.codex-next.log
+.next-dev*.log
+
+# 构建产物备份（不提交，仅本地留存）
+.next_bak2/
+.next_bak_koi/
+
+# PNG 原图备份（已转 WebP，原始大图仅本地留存）
+public/_originals/
+
+# ���ع�����־������⣩
+.tmp-build-log.txt

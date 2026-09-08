@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { Pen } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import PaperPlaneTrail from "@/components/effects/PaperPlaneTrail";
 import ParticleTrail from "@/components/ParticleTrail";
@@ -15,6 +16,10 @@ import { useRouteTransitionState } from "@/components/common/RouteTransitionShel
 import { TypewriterText } from "@/components/playground/TypewriterText";
 
 const CARD_EASE = [0.16, 1, 0.3, 1] as const;
+
+// 卡片浮影：与鱼影/鸭子影统一为深墨绿柔和投影，让卡片像浮在水面上
+const CARD_SHADOW =
+  "0 24px 50px -18px rgba(26,61,48,0.38), 0 10px 24px -12px rgba(26,61,48,0.24)";
 
 const CARD_VARIANTS = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -92,11 +97,43 @@ function ThoughtsCard() {
 
 export default function Home() {
   const { isRouteTransitioning } = useRouteTransitionState();
+  const { resolvedTheme } = useTheme();
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const isKoi = resolvedTheme === "koi";
+
+  // 只在锦鲤(koi)主题下，把首页卡片作为「障碍物」喂给鱼池：鱼会在卡片矩形周围绕行，不穿过卡片区
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const measure = () => {
+      const rects = Array.from(grid.children).map((el) => {
+        const r = (el as HTMLElement).getBoundingClientRect();
+        // 略外扩一圈，让鱼与卡片边缘保持一点间距
+        return { x: r.left - 12, y: r.top - 12, w: r.width + 24, h: r.height + 24 };
+      });
+      (window as unknown as { __koiSetObstacles?: (r: { x: number; y: number; w: number; h: number }[]) => void }).__koiSetObstacles?.(rects);
+    };
+    // 切离 koi 主题：清空避让区，防止残留导致鱼群绕行
+    if (!isKoi) {
+      (window as unknown as { __koiSetObstacles?: (r: { x: number; y: number; w: number; h: number }[]) => void }).__koiSetObstacles?.([]);
+      return;
+    }
+    const t = window.setTimeout(measure, 900); // 等卡片入场动画稳定后再量，避免量到位移中的矩形
+    const ro = new ResizeObserver(measure);
+    ro.observe(grid);
+    window.addEventListener("resize", measure);
+    return () => {
+      window.clearTimeout(t);
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [isKoi]);
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--background)] p-4 md:p-10">
       <ParticleTrail />
       <motion.div
+        ref={gridRef}
         initial={isRouteTransitioning ? false : "hidden"}
         animate="visible"
         className="relative z-10 grid w-full max-w-5xl grid-cols-1 auto-rows-[minmax(180px,auto)] gap-4 md:ml-16 md:grid-cols-3 md:gap-5"
@@ -104,7 +141,8 @@ export default function Home() {
         <motion.div
           variants={CARD_VARIANTS}
           custom={0}
-          className="md:col-span-2 md:row-span-2"
+          className="rounded-3xl md:col-span-2 md:row-span-2"
+          style={{ boxShadow: CARD_SHADOW }}
         >
           <Link
             href="/about"
@@ -162,7 +200,8 @@ export default function Home() {
         <motion.div
           variants={CARD_VARIANTS}
           custom={1}
-          className="md:col-span-1 md:row-span-2"
+          className="rounded-3xl md:col-span-1 md:row-span-2"
+          style={{ boxShadow: CARD_SHADOW }}
         >
           <CreationsCard />
         </motion.div>
@@ -170,7 +209,8 @@ export default function Home() {
         <motion.div
           variants={CARD_VARIANTS}
           custom={2}
-          className="md:col-span-2 md:row-span-1"
+          className="rounded-2xl md:col-span-2 md:row-span-1"
+          style={{ boxShadow: CARD_SHADOW }}
         >
           <JourneyCard rounded="rounded-2xl" />
         </motion.div>
@@ -178,7 +218,8 @@ export default function Home() {
         <motion.div
           variants={CARD_VARIANTS}
           custom={3}
-          className="h-full md:col-span-1 md:row-span-1"
+          className="h-full rounded-2xl md:col-span-1 md:row-span-1"
+          style={{ boxShadow: CARD_SHADOW }}
         >
           <ThoughtsCard />
         </motion.div>

@@ -214,7 +214,7 @@ export function CreationsCard() {
                 <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/Wolfcha Card.png"
+                    src="/Wolfcha Card.webp"
                     alt="Wolfcha"
                     className="w-full h-auto block select-none transition-[filter] duration-500 ease-out saturate-50 brightness-90 group-hover:saturate-100 group-hover:brightness-100"
                     draggable={false}
@@ -266,7 +266,7 @@ export function CreationsCard() {
                 <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/BBQTranslator Card.png"
+                    src="/BBQTranslator Card.webp"
                     alt="BBQTranslator"
                     className="w-full h-auto block select-none transition-[filter] duration-500 ease-out saturate-50 brightness-90 group-hover:saturate-100 group-hover:brightness-100"
                     draggable={false}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   createContext,
@@ -408,6 +408,7 @@ export function RouteTransitionShell({ children }: { children: ReactNode }) {
     useState<RouteTransitionDirection | null>(null);
   const [isSnapshotAnimating, setIsSnapshotAnimating] = useState(false);
   const [isIncomingAnimating, setIsIncomingAnimating] = useState(false);
+  const [isSnapshotHeld, setIsSnapshotHeld] = useState(false);
 
   const clearSnapshot = useCallback(() => {
     if (animationTimerRef.current !== null) {
@@ -432,6 +433,7 @@ export function RouteTransitionShell({ children }: { children: ReactNode }) {
     snapshotDirectionRef.current = null;
     setSnapshotDirection(null);
     setIsSnapshotAnimating(false);
+    setIsSnapshotHeld(false);
     setIsIncomingAnimating(false);
   }, []);
 
@@ -484,6 +486,7 @@ export function RouteTransitionShell({ children }: { children: ReactNode }) {
       setIsSnapshotAnimating(false);
       setIsIncomingAnimating(false);
       setSnapshotDirection(nextDirection);
+      setIsSnapshotHeld(true);
 
       return true;
     },
@@ -518,6 +521,7 @@ export function RouteTransitionShell({ children }: { children: ReactNode }) {
 
         setIsSnapshotAnimating(true);
         setIsIncomingAnimating(true);
+        setIsSnapshotHeld(false);
 
         animationTimerRef.current = window.setTimeout(() => {
           if (activeSnapshotRunIdRef.current !== runId) {
@@ -558,6 +562,7 @@ export function RouteTransitionShell({ children }: { children: ReactNode }) {
 
   const liveContentClassName = [
     "route-transition-panel",
+    isSnapshotHeld ? "route-transition-panel--snapshot-held" : "",
     isIncomingAnimating
       ? direction === 1
         ? "route-transition-panel--enter-forward"

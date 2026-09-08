@@ -128,7 +128,7 @@ export const PROJECTS = [
     name: "咣吃不胖",
     subtitle: "面向大众用户的 AI 健康饮食管理平台，让每个人吃得明白、让营养师管得高效。",
     team: "独立交付",
-    logo: "/diet/logo.png",
+    logo: "/diet/logo.webp",
     link: "https://chibupang.cc/",
     period: "2026.03 - 至今",
     description:
@@ -159,7 +159,7 @@ export const PROJECTS = [
     name: "猹杀 Wolfcha",
     subtitle: "一款由大模型实时扮演全部对局者的 AI 狼人杀，让你不再受人数限制随时开局",
     team: "2人团队",
-    logo: "/wolfcha/logo.png",
+    logo: "/wolfcha/logo.webp",
     period: "2026.01 - 至今",
     link: "https://wolf-cha.com",
     github: "https://github.com/oil-oil/wolfcha",
@@ -190,16 +190,16 @@ export const PROJECTS = [
     ],
     role: "产品设计 + 体验设计 + 测试 + 商业化",
     images: [
-      { src: "/wolfcha/banner.png", alt: "Wolfcha Banner" },
-      { src: "/wolfcha/白天阶段游戏截图.png", alt: "白天阶段讨论" },
-      { src: "/wolfcha/夜晚阶段游戏截图.png", alt: "夜晚阶段行动" },
+      { src: "/wolfcha/banner.webp", alt: "Wolfcha Banner" },
+      { src: "/wolfcha/白天阶段游戏截图.webp", alt: "白天阶段讨论" },
+      { src: "/wolfcha/夜晚阶段游戏截图.webp", alt: "夜晚阶段行动" },
     ],
   },
   {
     name: "Muse Folio",
     subtitle: "一款帮用户采集网页 UI 灵感并一键生成可复用提示词的工具网站",
     team: "独立完成",
-    logo: "/muse/logo.png",
+    logo: "/muse/logo.webp",
     period: "2026.08 - 至今",
     link: "https://muse-folio.com/",
     description:
@@ -228,7 +228,7 @@ export const PROJECTS = [
     name: "BBQ Translator",
     subtitle: "一款让读者即使不懂外语也能轻松读完的本地 AI 漫画翻译工具",
     team: "独立完成",
-    logo: "/BBQ-translator/logo.png",
+    logo: "/BBQ-translator/logo.webp",
     period: "2026.01 - 2026.02",
     github: "https://github.com/phdwdm-lang/bbq-translator",
     resourceLink:
@@ -260,9 +260,9 @@ export const PROJECTS = [
     ],
     role: "产品设计 + UI设计 + 全栈开发（独立完成）",
     images: [
-      { src: "/BBQ-translator/000.png", alt: "BBQ Translator 海报" },
-      { src: "/BBQ-translator/书架.png", alt: "资产管理页" },
-      { src: "/BBQ-translator/首页.png", alt: "工作台首页" },
+      { src: "/BBQ-translator/000.webp", alt: "BBQ Translator 海报" },
+      { src: "/BBQ-translator/书架.webp", alt: "资产管理页" },
+      { src: "/BBQ-translator/首页.webp", alt: "工作台首页" },
     ],
   },
 ] as const;

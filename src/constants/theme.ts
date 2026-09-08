@@ -152,11 +152,33 @@ export const THEME_TOKENS = {
     ...CARD_TOKENS.dark,
     ...ON_COLOR_TOKENS.dark,
   },
+  // 锦鲤主题：深墨绿前景 + 全站水彩鱼池 canvas 作背景（与鱼影阴影 rgba(26,61,48) 统一），
+  // 彩色卡片沿用 light。--background 保持 transparent，让负层 fixed 鱼池 canvas 透出，
+  // 不被页面根容器 / body 的 opaque 背景遮挡。
+  koi: {
+    "--background": "transparent",
+    "--foreground": "#1a3d30",
+    "--card-bg": "#f3ece6",
+    "--card-border": "#cfe0d6",
+    "--accent": "#1a3d30",
+    "--muted": "#3d5c4d",
+    "--muted-light": "#5c7a68",
+    "--tag-bg": "#e7efe9",
+    "--timeline-line": "#cfe0d6",
+    "--selection-text": "#ffffff",
+    "--shadow-ink": "#1a3d30",
+    "--nav-home": "#1a3d30",
+    ...SECTION_TOKENS.light,
+    ...CAPABILITY_TOKENS.light,
+    ...CARD_TOKENS.light,
+    ...ON_COLOR_TOKENS.light,
+  },
 } as const;
 
 const THEME_SELECTORS = {
   light: ":root",
   dark: ".dark",
+  koi: ".koi",
 } as const;
 
 const buildThemeBlock = (
@@ -170,6 +192,7 @@ const buildThemeBlock = (
 export const THEME_STYLE_TEXT = [
   buildThemeBlock(THEME_SELECTORS.light, THEME_TOKENS.light),
   buildThemeBlock(THEME_SELECTORS.dark, THEME_TOKENS.dark),
+  buildThemeBlock(THEME_SELECTORS.koi, THEME_TOKENS.koi),
 ].join("\n");
 
 export const CSS_VARS = {
