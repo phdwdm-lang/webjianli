@@ -17,9 +17,13 @@ function formatTime() {
 
 export default function LocationCard() {
   const Icon = ABOUT_MODULE_ICONS.location;
-  const [time, setTime] = useState(formatTime);
+  // 初始用空串占位：避免 SSR 用服务器时间格式化，导致客户端 hydration 文本不一致（Hydration mismatch）
+  // 挂载后再由 useEffect 设置真实时间，服务端与客户端首帧均为空串，可安全匹配。
+  const [time, setTime] = useState("");
 
   useEffect(() => {
+    // 挂载后立即刷新一次，避免首屏时钟为空（直到 1s 后才显示）
+    setTime(formatTime());
     const timer = window.setInterval(() => {
       setTime(formatTime());
     }, 1000);

@@ -6,7 +6,7 @@ import {
   AnimatePresence,
   type MotionValue,
 } from "framer-motion";
-import { Home, User, Rocket, Clock, Pen, Sun, Moon } from "lucide-react";
+import { Home, User, Rocket, Clock, Pen, Sun, Moon, Fish } from "lucide-react";
 import { NAV_STYLES } from "@/constants/theme";
 import { useDockIconMotion } from "@/hooks/useDockIconMotion";
 import { useSideNavState } from "@/hooks/useSideNavState";
@@ -73,6 +73,7 @@ function SideNavComponent() {
   const {
     mouseY,
     isDark,
+    isKoi,
     hoveredIndex,
     handleMouseMove,
     handleMouseLeave,
@@ -112,6 +113,7 @@ function SideNavComponent() {
           onHoverStart={() => handleHoverStart(index)}
           onHoverEnd={handleHoverEnd}
           isDark={isDark}
+          isKoi={isKoi}
           isRouteTransitioning={isRouteTransitioning}
           onToggle={
             item.isToggle
@@ -140,6 +142,7 @@ interface DockIconProps {
   onHoverStart: () => void;
   onHoverEnd: () => void;
   isDark: boolean;
+  isKoi: boolean;
   isRouteTransitioning: boolean;
   onToggle?: () => void;
   onNavigate?: (href: string) => void;
@@ -154,12 +157,21 @@ function DockIcon({
   onHoverStart,
   onHoverEnd,
   isDark,
+  isKoi,
   isRouteTransitioning,
   onToggle,
   onNavigate,
   onPrefetch,
 }: DockIconProps) {
-  const Icon = item.isToggle ? (isDark ? Moon : Sun) : item.icon;
+  const Icon = item.isToggle ? (isKoi ? Fish : isDark ? Moon : Sun) : item.icon;
+  // 三态 tooltip：白天 / 夜间 / 锦鲤
+  const label = item.isToggle
+    ? isKoi
+      ? "锦鲤主题"
+      : isDark
+        ? "夜间模式"
+        : "白天模式"
+    : item.label;
   const { ref, size, iconScale } = useDockIconMotion({
     mouseY,
     baseSize: BASE_SIZE,
@@ -227,7 +239,7 @@ function DockIcon({
               color: NAV_STYLES.tooltipText,
             }}
           >
-            {item.label}
+            {label}
             <div
               className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[5px] border-b-[5px] border-r-[5px] border-transparent"
               style={{ borderRightColor: item.tooltipBg ?? item.color }}

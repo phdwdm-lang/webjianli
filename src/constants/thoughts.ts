@@ -31,7 +31,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     accentColor: "#C9A227",
     thought:
       '其实偷懒是人的天性，理智脑对大脑的控制能力很弱，所以我们在生活中做的大部分决策往往源于本能和情绪，而非理智。大多数时候我们以为自己在思考，其实都是在对自身的行为和欲望进行合理化，俗称"找借口"。\n\n所以要想从既有的习惯中跳出来，最好的方法不是依靠自制力，而是依靠知识，因为依靠意志相当于是与本能脑和情绪脑作对抗，用理论逻辑实际案例说服或欺骗自己。',
-    image: "/picture/image.png",
+    image: "/picture/image.webp",
     imageCaption: "习惯的力量",
   },
   {
@@ -41,7 +41,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     bgColor: "#F1F3EE",
     accentColor: "#528B71",
     thought: "实践！实践！还是实践！因为很重要所以说三次！",
-    image: "/picture/image3.png",
+    image: "/picture/image3.webp",
     imageCaption: "知行合一",
   },
   {
@@ -63,7 +63,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     accentColor: "#C9A227",
     thought:
       "企业以产品为媒介，与用户进行价值交换，达成创造商业价值的目的。而本质上，交换的不是产品这个媒介，而是产品背后的各种用户价值。\n\n用户购买或使用产品，是为了获取使用价值，但企业做产品却是为了获取交换价值。一言以蔽之，企业创造有交换价值的使用价值（用产品承载），然后用它跟用户交换钱、时间、承诺等企业需要的价值。",
-    image: "/picture/image2.png",
+    image: "/picture/image2.webp",
     imageCaption: "价值交换",
   },
   {
@@ -168,7 +168,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     accentColor: "#528B71",
     thought:
       "这句话很像对抗焦虑的一剂解药。我们太容易用短期反馈来判断一件事值不值得做，于是看不到那些前期缓慢、后期爆发的积累。可真正重要的东西，往往都不是今天做、明天就显效，而是先熬过一段看起来没什么变化的日子。它提醒我，别用线性的期待去要求复利型的成长。",
-    image: "/picture/image4.png",
+    image: "/picture/image4.webp",
     imageCaption: "复利曲线",
   },
   {
@@ -179,7 +179,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     accentColor: "#528B71",
     thought:
       "学会给“努力”划一条边界。不是越拼越好，也不是越安全越好，而是始终待在稍微费力、但还没把自己压垮的位置。太轻松不会长，太困难又容易退。很多时候真正有效的成长，不是猛冲，而是长期待在那个既不舒服、又还撑得住的边缘。",
-    image: "/picture/image5.png",
+    image: "/picture/image5.webp",
     imageCaption: "舒适区边缘",
   },
   {
@@ -211,7 +211,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     accentColor: "#C9A227",
     thought:
       "我特别喜欢这句话的锋利，因为它直接把很多空泛的用户分析砍掉了。脱离场景谈用户偏好，常常只会得到一些看上去对、但实际上没法指导判断的结论。很多选择不是这个人“本来就这样”，而是他在那个时刻、那个约束条件下，只会这样选。理解场景，才是真正开始理解用户。",
-    image: "/picture/image6.png",
+    image: "/picture/image6.webp",
     imageCaption: "用户场景",
   },
   {
@@ -333,7 +333,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     bgColor: "#FFFFFF",
     accentColor: "#5B7A99",
     thought: "",
-    image: "/picture/image7.png",
+    image: "/picture/image7.webp",
     imageCaption: "成长权重对比",
     imageWidth: 2429,
     imageHeight: 909,
@@ -346,7 +346,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     bgColor: "#FFFFFF",
     accentColor: "#D48C70",
     thought: "",
-    image: "/picture/image8.png",
+    image: "/picture/image8.webp",
     imageCaption: "体验层次图",
     imageWidth: 2129,
     imageHeight: 2865,
@@ -359,7 +359,7 @@ export const THOUGHT_NOTES: ThoughtNote[] = [
     bgColor: "#FFFFFF",
     accentColor: "#5B7A99",
     thought: "",
-    image: "/picture/image9.png",
+    image: "/picture/image9.webp",
     imageCaption: "会飞的自己",
     imageWidth: 1357,
     imageHeight: 861,

@@ -47,3 +47,17 @@ next-env.d.ts
 # AI 辅助生成产物与临时状态(与锦鲤/新功能无关,不入库)
 /.superpowers/
 /generated-images/
+
+# dev / build 日志（本轮排查产物，不入库）
+.codex-next.log
+.next-dev*.log
+
+# 构建产物备份（不提交，仅本地留存）
+.next_bak2/
+.next_bak_koi/
+
+# PNG 原图备份（已转 WebP，原始大图仅本地留存）
+public/_originals/
+
+# 本地构建日志（不入库）
+.tmp-build-log.txt

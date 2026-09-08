@@ -24,9 +24,9 @@ export function useCanvasDrag({
   overscroll = 100,
   initialOffset,
 }: UseCanvasDragOptions) {
-  const [offset, setOffset] = useState<CanvasOffset>(() =>
-    typeof window === "undefined" ? { x: 0, y: 0 } : initialOffset()
-  );
+  // 初始偏移统一为 {0,0}：SSR 与客户端首帧保持一致，
+  // 避免 offset 依赖视口(客户端 window)导致的 hydration mismatch。
+  const [offset, setOffset] = useState<CanvasOffset>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef<{
     pointerId: number;
@@ -35,6 +35,12 @@ export function useCanvasDrag({
     startOffsetX: number;
     startOffsetY: number;
   } | null>(null);
+
+  // 挂载后再用真实视口计算居中偏移（仅一次），保证 SSR→客户端首帧一致、最终居中。
+  const initialOffsetRef = useRef(initialOffset);
+  useEffect(() => {
+    setOffset(initialOffsetRef.current());
+  }, []);
 
   const bounds = useMemo(() => {
     if (typeof window === "undefined") {

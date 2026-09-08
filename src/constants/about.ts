@@ -49,7 +49,7 @@ export const ABOUT_COPY = {
   hikerFrontAccent: "产品经理",
   hikerBackTitle: "耐造",
   resumeLabel: "查看个人二维码",
-  resumeHref: "/个人微信.png",
+  resumeHref: "/个人微信.webp",
 } as const;
 
 export const ABOUT_MODULE_ICONS = {

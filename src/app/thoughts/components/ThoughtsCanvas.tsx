@@ -100,6 +100,7 @@ export function ThoughtsCanvas() {
       />
 
       <div
+        data-canvas-surf="true"
         className={`relative z-10 h-screen w-full overflow-hidden ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
@@ -111,8 +112,8 @@ export function ThoughtsCanvas() {
         <div
           className="thoughts-canvas-surface absolute left-0 top-0"
           style={{
-            width: THOUGHTS_CANVAS_SIZE.width,
-            height: THOUGHTS_CANVAS_SIZE.height,
+            width: `${THOUGHTS_CANVAS_SIZE.width}px`,
+            height: `${THOUGHTS_CANVAS_SIZE.height}px`,
             transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
           }}
         >

@@ -19,7 +19,7 @@ export const SKILLS: readonly Skill[] = [
     title: "小红书视频转知乎图文",
     tagline: "视频转图文",
     coverImage: {
-      src: "/skills/xhs-video-to-zhihu-cover-v2.png",
+      src: "/skills/xhs-video-to-zhihu-cover-v2.webp",
       alt: "手机画面转为图文页面的插图",
     },
     description:
@@ -38,7 +38,7 @@ export const SKILLS: readonly Skill[] = [
     title: "cap-edit · Cap 录屏 AI 剪辑",
     tagline: "录屏自动剪辑",
     coverImage: {
-      src: "/skills/cap-edit-cover-v2.png",
+      src: "/skills/cap-edit-cover-v2.webp",
       alt: "屏幕胶片序列被剪刀切除空白片段的插图",
     },
     description:
@@ -57,7 +57,7 @@ export const SKILLS: readonly Skill[] = [
     title: "竞品拆解 · PARDON",
     tagline: "竞品拆解",
     coverImage: {
-      src: "/skills/pardon-competitor-deconstructor-cover-v1.png",
+      src: "/skills/pardon-competitor-deconstructor-cover-v1.webp",
       alt: "三组产品蓝图在放大镜下进行竞品拆解",
     },
     description: "按策略 / 功能 / 体验 / 增长四个维度结构化拆解竞品，输出可借鉴点、不可抄点与差异化建议，帮产品找到差异化切入点。",
@@ -75,7 +75,7 @@ export const SKILLS: readonly Skill[] = [
     title: "PRD 撰写 · PARDON",
     tagline: "写 PRD",
     coverImage: {
-      src: "/skills/pardon-prd-writer-cover-v1.png",
+      src: "/skills/pardon-prd-writer-cover-v1.webp",
       alt: "散乱想法整理成结构化需求文档",
     },
     description: "把模糊、碎片化的需求描述转化为结构清晰、可直接进入评审的 PRD，覆盖需求澄清到结构化输出全流程。",
@@ -93,7 +93,7 @@ export const SKILLS: readonly Skill[] = [
     title: "截图转原型 · PARDON",
     tagline: "截图转原型",
     coverImage: {
-      src: "/skills/pardon-image2proto-cover-v1.png",
+      src: "/skills/pardon-image2proto-cover-v1.webp",
       alt: "线框图转换为网页原型",
     },
     description: "把 UI 截图 / 线框 / 设计稿复现为可交互的单文件 HTML 原型，支持根据反馈迭代精修，并记忆用户设计偏好。",
@@ -111,7 +111,7 @@ export const SKILLS: readonly Skill[] = [
     title: "模拟评审会 · PARDON",
     tagline: "模拟评审",
     coverImage: {
-      src: "/skills/pardon-review-board-cover-v1.png",
+      src: "/skills/pardon-review-board-cover-v1.webp",
       alt: "多角度工具围绕产品文档进行评审",
     },
     description: "模拟多角色 PRD / 原型评审会，从产品、研发、测试、设计、运营、法务六大视角给出评审结论，上线前把问题找出来。",
@@ -129,7 +129,7 @@ export const SKILLS: readonly Skill[] = [
     title: "优先级排序 · PARDON",
     tagline: "排优先级",
     coverImage: {
-      src: "/skills/pardon-prioritization-engine-cover-v1.png",
+      src: "/skills/pardon-prioritization-engine-cover-v1.webp",
       alt: "产品想法经过权衡后排列优先级",
     },
     description: "对需求 / 功能 / 项目进行多维度优先级排序，支持 RICE、ICE、Kano 等模型打分，输出可执行的版本排期建议。",
@@ -147,7 +147,7 @@ export const SKILLS: readonly Skill[] = [
     title: "路线图排期 · PARDON",
     tagline: "做路线图",
     coverImage: {
-      src: "/skills/pardon-roadmap-planner-cover-v1.png",
+      src: "/skills/pardon-roadmap-planner-cover-v1.webp",
       alt: "路线规划经过里程碑和风险节点到达终点",
     },
     description: "从季度目标、团队产能、依赖方信息出发，输出可执行的版本路线图，含里程碑、依赖风险、缓冲策略与每阶段成功指标。",
@@ -165,7 +165,7 @@ export const SKILLS: readonly Skill[] = [
     title: "埋点设计 · PARDON",
     tagline: "设计埋点",
     coverImage: {
-      src: "/skills/pardon-tracking-spec-writer-cover-v1.png",
+      src: "/skills/pardon-tracking-spec-writer-cover-v1.webp",
       alt: "交互事件流入埋点规范并完成校验",
     },
     description: "从产品需求 / 核心链路出发，输出完整埋点方案文档，包含事件、字段、触发时机、口径说明与 QA 校验清单。",
@@ -183,7 +183,7 @@ export const SKILLS: readonly Skill[] = [
     title: "A/B 实验设计 · PARDON",
     tagline: "设计实验",
     coverImage: {
-      src: "/skills/pardon-experiment-designer-cover-v1.png",
+      src: "/skills/pardon-experiment-designer-cover-v1.webp",
       alt: "实验分流到两组测试并汇总结果",
     },
     description: "从实验目标出发输出完整 A/B 实验方案，含假设、分组、指标体系、样本量估算、止损规则与判定规则。",
@@ -201,7 +201,7 @@ export const SKILLS: readonly Skill[] = [
     title: "数据分析归因 · PARDON",
     tagline: "数据分析",
     coverImage: {
-      src: "/skills/pardon-analytics-cover-v1.png",
+      src: "/skills/pardon-analytics-cover-v1.webp",
       alt: "数据经过分析形成上升趋势和决策结果",
     },
     description: "从数据现象出发生成可执行的产品决策建议，以可视化 HTML 报告输出，支持指标拆解、归因分析、分群对比、留存漏斗分析。",
@@ -219,7 +219,7 @@ export const SKILLS: readonly Skill[] = [
     title: "问卷设计 · PARDON",
     tagline: "设计问卷",
     coverImage: {
-      src: "/skills/pardon-survey-designer-cover-v1.png",
+      src: "/skills/pardon-survey-designer-cover-v1.webp",
       alt: "问题选项经过筛选整理为问卷",
     },
     description: "设计高质量调研问卷，从目标拆解、题目设计、偏差审查到样本与发放，确保每道题都验证对应假设。",
@@ -237,7 +237,7 @@ export const SKILLS: readonly Skill[] = [
     title: "上线复盘 · PARDON",
     tagline: "上线复盘",
     coverImage: {
-      src: "/skills/pardon-postmortem-writer-cover-v1.png",
+      src: "/skills/pardon-postmortem-writer-cover-v1.webp",
       alt: "产品上线复盘发现问题并修复路线",
     },
     description: "生成结构化上线复盘报告，含目标达成、偏差原因、经验沉淀与后续行动项，每条结论有数据支撑、每条行动有 owner 和截止日。",

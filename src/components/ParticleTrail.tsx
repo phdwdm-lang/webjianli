@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import { EFFECT_COLORS } from "@/constants/theme";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 const THEME_COLORS_LIGHT = EFFECT_COLORS.particleTrail;
 
@@ -29,6 +30,8 @@ export default function ParticleTrail({
   scope = "parent",
   className,
 }: ParticleTrailProps) {
+  const { resolvedTheme } = useTheme();
+  const isKoi = resolvedTheme === "koi";
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const prevMouseRef = useRef({ x: 0, y: 0, initialized: false });
@@ -78,6 +81,9 @@ export default function ParticleTrail({
   }, []);
 
   useEffect(() => {
+    // koi（锦鲤）模式：关闭鼠标彩色拖尾与点击涟漪，让水面涟漪与鱼池接管动效
+    if (isKoi) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -200,7 +206,7 @@ export default function ParticleTrail({
       document.removeEventListener("click", handleClick);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [scope, spawnTrailParticles, spawnRipple]);
+  }, [scope, spawnTrailParticles, spawnRipple, isKoi]);
 
   return (
     <canvas

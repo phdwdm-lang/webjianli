@@ -1,8 +1,8 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Home, User, Rocket, Clock, Pen, Sun, Moon } from "lucide-react";
+import { Home, User, Rocket, Clock, Pen, Sun, Moon, Fish } from "lucide-react";
 import { useTheme } from "next-themes";
 import { NAV_STYLES } from "@/constants/theme";
 import {
@@ -54,14 +54,21 @@ const NAV_ITEMS: NavItem[] = [
 
 function MobileNavComponent() {
   const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const { activePathname, navigateWithTransition, prefetchRoute } =
     useRouteTransitionNavigation();
   const { isRouteTransitioning } = useRouteTransitionState();
-  const isDark = resolvedTheme === "dark";
+  const isDark = mounted && resolvedTheme === "dark";
+  const isKoi = mounted && resolvedTheme === "koi";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleTheme = () => {
     if (!isRouteTransitioning) {
-      setTheme(isDark ? "light" : "dark");
+      const next = isDark ? "koi" : isKoi ? "light" : "dark";
+      setTheme(next);
     }
   };
 
@@ -76,7 +83,7 @@ function MobileNavComponent() {
       }}
     >
       {NAV_ITEMS.map((item) => {
-        const Icon = item.isToggle ? (isDark ? Moon : Sun) : item.icon;
+        const Icon = item.isToggle ? (isKoi ? Fish : isDark ? Moon : Sun) : item.icon;
         const isActive = item.href === activePathname;
 
         const iconElement = (
