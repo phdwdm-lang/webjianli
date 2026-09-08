@@ -1,35 +1,9 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Mono, Syne, Noto_Serif_SC } from "next/font/google";
 import { THEME_STYLE_TEXT } from "@/constants/theme";
 import { AppChrome } from "@/components/common/AppChrome";
 import { ClientProviders } from "@/components/common/ClientProviders";
 import "./globals.css";
-
-const dmSans = DM_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  axes: ["opsz"],
-});
-
-const dmMono = DM_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-});
-
-const syne = Syne({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const notoSerif = Noto_Serif_SC({
-  weight: ["400", "500", "600", "700", "900"],
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  preload: false,
-});
+import "./fonts/font-faces.css";
 
 export const metadata: Metadata = {
   title: "Pardon乌冬面 | 个人品牌空间",
@@ -50,9 +24,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: THEME_STYLE_TEXT }}
         />
       </head>
-      <body
-        className={`${dmSans.variable} ${dmMono.variable} ${syne.variable} ${notoSerif.variable} antialiased`}
-      >
+      <body className="antialiased">
         <ClientProviders>
           <AppChrome>{children}</AppChrome>
         </ClientProviders>

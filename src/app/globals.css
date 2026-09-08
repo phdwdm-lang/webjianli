@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* 项目根存在导出/演示用的 *.html、*.md（含畸形任意值类），
+   Tailwind v4 自动内容探测会扫描它们并生成 var(--y,) 等无法解析的 utility，
+   导致 Fresh 编译报 “Parsing CSS source code failed”。这里显式排除。 */
+@source not "../../*.html";
+@source not "../../*.md";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -7,11 +17,61 @@
   --font-mono: var(--font-mono);
   --font-display: var(--font-display);
   --font-serif: var(--font-serif);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* 自托管字体变量（方案2：部署零联网）。原由 next/font 的 variable class 注入，
+   现改用自定义 @font-face（见 fonts/font-faces.css）并通过 :root 提供族名。 */
+:root {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-serif: "Noto Serif SC", ui-serif, Georgia, serif;
+  --font-caveat: "Caveat", var(--font-sans), sans-serif;
+  --font-handwriting: "Ma Shan Zheng", var(--font-serif), serif;
+  --font-xiaowei: "ZCOOL XiaoWei", var(--font-serif), serif;
+  --font-longcang: "Long Cang", var(--font-serif), serif;
+  --font-zhimang: "Zhi Mang Xing", var(--font-serif), serif;
+}
+
+
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -76,6 +136,13 @@ body {
   transition: none !important;
 }
 
+/* 转场期间隐藏实时内容，避免与快照 clone(旧页) 同时渲染造成"闪回/叠影"。
+   动画真正开始(startAnimation)后，isSnapshotHeld 置 false 会移除本类。 */
+.route-transition-panel--snapshot-held {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .route-transition-live-nav {
   backface-visibility: hidden;
   transform: translateZ(0);
@@ -87,13 +154,13 @@ body {
   }
 
   to {
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100vh, 0);
   }
 }
 
 @keyframes route-panel-enter-forward {
   from {
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100vh, 0);
   }
 
   to {
@@ -107,13 +174,13 @@ body {
   }
 
   to {
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100vh, 0);
   }
 }
 
 @keyframes route-panel-enter-backward {
   from {
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100vh, 0);
   }
 
   to {
@@ -797,7 +864,6 @@ html:not(.dark) .glass-card:hover {
 @keyframes wf-m2 { 0%,68% { clip-path: inset(0 100% 0 0); } 75%,100% { clip-path: inset(0 -2% 0 0); } }
 @keyframes wf-m3 { 0%,76% { clip-path: inset(0 100% 0 0); } 84%,100% { clip-path: inset(0 -2% 0 0); } }
 
-
 /* ---------- 智能饮食管理平台 ---------- */
 .dt-root { display: flex; gap: 5%; padding: 7% 6%; align-items: stretch; }
 .dt-photo {
@@ -1029,5 +1095,192 @@ html:not(.dark) .glass-card:hover {
 .animate-tab-in-right { animation: tabInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 .animate-tab-in-left { animation: tabInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
 
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
 
+/* 锦鲤主题：浅粉水彩底 + 深墨绿前景（与鱼影阴影 rgba(26,61,48) 统一），卡片彩色沿用 light
+   注意：--background 设为 transparent，让全站水彩鱼池 canvas（负层 fixed）透出；
+   页面根容器 / body 的 bg-[var(--background)] 因此透明而不遮挡鱼池。卡片底色用 --card。 */
+.koi {
+  --background: transparent;
+  --foreground: oklch(0.29 0.06 165);
+  --card: oklch(0.96 0.03 70);
+  --card-foreground: oklch(0.29 0.06 165);
+  --popover: oklch(0.96 0.03 70);
+  --popover-foreground: oklch(0.29 0.06 165);
+  --primary: oklch(0.33 0.07 165);
+  --primary-foreground: oklch(0.98 0.01 120);
+  --secondary: oklch(0.93 0.03 70);
+  --secondary-foreground: oklch(0.29 0.06 165);
+  --muted: oklch(0.93 0.03 75);
+  --muted-foreground: oklch(0.42 0.05 160);
+  --accent: oklch(0.93 0.03 70);
+  --accent-foreground: oklch(0.29 0.06 165);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.88 0.03 160);
+  --input: oklch(0.88 0.03 160);
+  --ring: oklch(0.55 0.08 160);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.93 0.03 75);
+  --sidebar-foreground: oklch(0.29 0.06 165);
+  --sidebar-primary: oklch(0.33 0.07 165);
+  --sidebar-primary-foreground: oklch(0.98 0.01 120);
+  --sidebar-accent: oklch(0.92 0.03 70);
+  --sidebar-accent-foreground: oklch(0.29 0.06 165);
+  --sidebar-border: oklch(0.88 0.03 160);
+  --sidebar-ring: oklch(0.55 0.08 160);
+}
+
+/* 锦鲤模式光标策略：
+   - 默认恢复系统光标：页面内容（含不可点击的卡片、面板、背景元素之外的一切）正常显示指针
+   - 仅当鼠标落在「背景」（空白水面/画布）时，DuckCursor 在 html 上挂 .koi-bg，
+     此时隐藏系统光标、交由鸭子接管；离开背景即撤下 .koi-bg，恢复系统光标 */
+html.koi.koi-bg,
+html.koi.koi-bg * { cursor: none !important; }
+
+/* 可交互元素在锦鲤模式下仍显示手型指针，方便点击 */
+html.koi a,
+html.koi button,
+html.koi [role="button"],
+html.koi [data-interactive],
+html.koi input,
+html.koi textarea,
+html.koi select,
+html.koi label {
+  cursor: pointer !important;
+}
+
+/* ── 锦鲤模式：卡片毛玻璃 ─────────────────────────────────────────────○
+   仅对指定类型卡片做毛玻璃（半透明底 + backdrop-filter 透出下层鱼池）；
+   首页四张卡片保持原有不透明材质，不在此处理。
+   灵感造物：产品介绍区(.card-right)毛玻璃，动画/封面预览不变；
+   Skill 卡(.isolate article/a)、时光足迹卡(.glass-card)整体毛玻璃。 */
+
+/* about 团状卡片 */
+html.koi .bento-card,
+html.koi .bento-flip-card-face {
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  border-color: color-mix(in oklab, var(--card-border) 60%, transparent);
+  background-color: color-mix(in oklab, var(--card-bg) 45%, transparent);
+}
+
+/* 灵感造物：产品介绍区毛玻璃（外层 article 背景转半透明，让介绍区透出鱼池） */
+html.koi article:has(.card-right) {
+  background-color: color-mix(in oklab, var(--card-bg) 40%, transparent);
+}
+html.koi .card-right {
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  background-color: color-mix(in oklab, var(--card-bg) 30%, transparent);
+}
+
+/* Skill 卡：整卡毛玻璃 */
+html.koi article.isolate,
+html.koi a.isolate {
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  border-color: color-mix(in oklab, var(--card-border) 60%, transparent);
+  background-color: color-mix(in oklab, var(--card-bg) 45%, transparent);
+}
+
+/* 时光足迹：卡片毛玻璃（koi 下更透明、模糊更明显） */
+html.koi .glass-card {
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  background: color-mix(in oklab, var(--card-bg) 45%, transparent);
+  border: 1px solid color-mix(in oklab, var(--card-border) 60%, transparent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* 锦鲤模式的页面转场与日间/夜间模式完全一致（双向纵向滚动交叉切换），
+   唯一区别是背景鱼池 canvas 不动。下面仅保留快照克隆内关闭 backdrop-filter，
+   消除滑动首帧因半透明毛玻璃+全屏鱼池产生的闪回。 */
+html.koi .route-transition-snapshot-clone,
+html.koi .route-transition-snapshot-clone * {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
