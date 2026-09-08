@@ -1,6 +1,5 @@
 import {
   BookOpenText,
-  CheckCircle2,
   ExternalLink,
   type LucideIcon,
   PlayCircle,
@@ -9,7 +8,18 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { BrandIcon } from "@/components/BrandIcon";
-import { highlightData } from "@/utils/highlightData";
+import { useState, type ComponentType } from "react";
+import DietDemo from "@/components/demos/DietDemo";
+import WolfchaDemo from "@/components/demos/WolfchaDemo";
+import BbqDemo from "@/components/demos/BbqDemo";
+import UiCollectDemo from "@/components/demos/UiCollectDemo";
+
+const PROJECT_DEMOS: Record<string, ComponentType> = {
+  咣吃不胖: DietDemo,
+  "猹杀 Wolfcha": WolfchaDemo,
+  "BBQ Translator": BbqDemo,
+  "Muse Folio": UiCollectDemo,
+};
 
 type ProjectImage = {
   src: string;
@@ -33,6 +43,7 @@ type Project = {
   techStack: readonly string[];
   images?: readonly ProjectImage[];
   coverImage?: ProjectImage;
+  logo?: string;
 };
 
 interface ProjectCardProps {
@@ -51,10 +62,9 @@ export default function ProjectCard({
   reverse = false,
 }: ProjectCardProps) {
   const coverImage = project.coverImage ?? project.images?.[0];
-  const highlights = project.highlights.slice(0, 2);
-  const techStack = project.techStack.slice(0, 4);
   const stats = project.stats.slice(0, 4);
-  const TeamIcon = project.team.includes("独立") ? User : Users;
+  const Demo = PROJECT_DEMOS[project.name];
+  const [logoHovered, setLogoHovered] = useState(false);
 
   const primaryAction: Action | null = project.link
     ? {
@@ -79,19 +89,16 @@ export default function ProjectCard({
   const githubAction: Action | null = project.github
     ? {
         href: project.github,
-        label: "GitHub 代码",
+        label: "GitHub",
         icon: ExternalLink,
       }
     : null;
 
-  const badgePositionClass = reverse
-    ? "left-4 md:left-auto md:right-4"
-    : "left-4";
   const imageObjectPositionClass = project.name.includes("BBQ")
     ? "object-center md:object-[center_35%]"
     : "object-center";
   const imageSectionClass = [
-    "relative min-h-[280px] overflow-hidden border-b border-[var(--card-border)] bg-[color-mix(in_oklab,var(--background)_92%,var(--foreground))] md:min-h-0 md:w-[44%] md:border-b-0 lg:w-[45%]",
+    "relative min-h-[280px] overflow-hidden border-b border-[var(--card-border)] bg-[color-mix(in_oklab,var(--background)_92%,var(--foreground))] md:min-h-0 md:w-[55%] md:border-b-0 lg:w-[55%]",
     reverse
       ? "md:border-l md:border-l-[var(--card-border)]"
       : "md:border-r md:border-r-[var(--card-border)]",
@@ -105,7 +112,9 @@ export default function ProjectCard({
       ].join(" ")}
     >
       <div className={imageSectionClass}>
-        {coverImage ? (
+        {Demo ? (
+          <Demo />
+        ) : coverImage ? (
           <Image
             src={coverImage.src}
             alt={coverImage.alt}
@@ -119,53 +128,53 @@ export default function ProjectCard({
           </div>
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-        <span
-          className={`absolute top-4 ${badgePositionClass} rounded-full border border-white/60 bg-white/90 px-3 py-1 text-xs font-bold tracking-[0.01em] text-[var(--section-color)] shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-[color-mix(in_oklab,var(--card-bg)_88%,transparent)]`}
-        >
-          {project.period}
-        </span>
       </div>
 
-      <div className="flex flex-1 flex-col justify-between p-7 md:p-9 lg:p-10">
+      <div
+        className="card-right flex flex-1 flex-col justify-center gap-6 p-7 md:p-9 lg:p-10"
+        onMouseEnter={() => setLogoHovered(true)}
+        onMouseLeave={() => setLogoHovered(false)}
+      >
         <div>
-          <div className="mb-2 flex flex-wrap items-center gap-2.5 sm:flex-nowrap sm:gap-3">
-            <h2 className="min-w-0 text-[2.05rem] font-bold leading-none tracking-tight text-[var(--foreground)]">
-              {project.name}
-            </h2>
-            <div className="inline-flex shrink-0 items-center gap-1 rounded-md bg-[var(--tag-bg)] px-2.5 py-1 text-xs font-medium text-[var(--muted)]">
-              <TeamIcon size={12} />
-              <span>{project.team}</span>
+          <div className="flex flex-wrap items-center gap-2.5 sm:flex-nowrap sm:gap-3">
+            {project.logo && (
+              <img
+                src={project.logo}
+                alt=""
+                className={`card-logo h-[70px] w-[70px] shrink-0 rounded-2xl ${project.name.includes("BBQ") ? "object-contain" : "object-cover"}`}
+                style={{
+                  transformOrigin: "center",
+                  transition: "transform 0.5s cubic-bezier(0.4,0,0.2,1)",
+                  transform: logoHovered
+                    ? "rotate(-6deg) scale(1.05)"
+                    : "rotate(0deg) scale(1)",
+                }}
+              />
+            )}
+            <div className="relative inline-block">
+              <span
+                aria-hidden="true"
+                className="card-title-bar pointer-events-none absolute inset-0 -z-10 rounded-lg bg-[color-mix(in_oklab,var(--section-color)_16%,transparent)]"
+                style={{
+                  transformOrigin: "left",
+                  transition: "transform 0.3s cubic-bezier(0.4,0,0.2,1)",
+                  transform: logoHovered ? "scaleX(1)" : "scaleX(0)",
+                }}
+              />
+              <h2 className="min-w-0 text-[53px] font-bold leading-none tracking-tight text-[var(--foreground)]">
+                {project.name}
+              </h2>
             </div>
           </div>
 
-          <p className="mb-4 text-sm font-medium text-[var(--section-color)] md:text-base">
+          <p className="mt-2 text-sm font-medium leading-relaxed text-[var(--section-color)] md:mt-3 md:text-base">
             {project.subtitle}
           </p>
 
-          <p className="mb-4 text-sm leading-relaxed text-[var(--foreground)]">
-            {highlightData(project.description)}
-          </p>
-
-          <div className="mb-5 space-y-2">
-            {highlights.map((highlight) => (
-              <div
-                key={highlight}
-                className="flex items-start gap-2 text-sm leading-relaxed text-[var(--muted)]"
-              >
-                <CheckCircle2
-                  size={16}
-                  className="mt-0.5 shrink-0 text-[var(--section-color)]"
-                />
-                <span className="min-w-0 flex-1">
-                  {highlightData(highlight)}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div>
-          <div className="my-5 grid grid-cols-2 gap-4 border-y border-[var(--card-border)] py-5 sm:grid-cols-4">
+          <div className="my-4 grid grid-cols-2 gap-4 border-y border-[var(--card-border)] py-4 sm:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col">
                 <span className="text-xl font-extrabold leading-tight text-[var(--section-color)]">
@@ -175,17 +184,6 @@ export default function ProjectCard({
                   {stat.label}
                 </span>
               </div>
-            ))}
-          </div>
-
-          <div className="mb-5 flex flex-wrap gap-2">
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-transparent bg-[color-mix(in_oklab,var(--section-color)_6%,transparent)] px-3 py-1.5 text-xs font-semibold tracking-[0.01em] text-[var(--section-color)] transition-all duration-300 hover:border-[color-mix(in_oklab,var(--section-color)_20%,transparent)] hover:bg-[color-mix(in_oklab,var(--section-color)_10%,transparent)]"
-              >
-                {tech}
-              </span>
             ))}
           </div>
 
